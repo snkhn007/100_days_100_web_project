@@ -1,3 +1,4 @@
+
 /* ============================================
    TaskFlow — Task Manager JS
    Full rewrite: clean, functional, persistent
@@ -145,6 +146,19 @@ function renderList() {
     const card = buildCard(task);
     container.appendChild(card);
   });
+
+  deleteBtn.addEventListener("click", () => {
+    note.remove();
+  });
+
+  noteWrapper.appendChild(taskText);
+  noteWrapper.appendChild(dropdown);
+  noteWrapper.appendChild(tickIcon);
+  noteWrapper.appendChild(deleteBtn);
+
+  note.appendChild(noteWrapper);
+  notesContainer.appendChild(note);
+  task.value = "";
 }
 
 function buildCard(task) {
@@ -185,6 +199,7 @@ function buildCard(task) {
 
   card.append(check, text, tag, del);
   return card;
+
 }
 
 // ── Stats ───────────────────────────────────
