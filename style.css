@@ -521,3 +521,34 @@ tbody td a:hover {
     thead { display: none; }
     tbody td { padding: 1.2rem 1rem; }
 }
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Professional scrollbar */
+::-webkit-scrollbar {
+    width: 14px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #00ff88, #00bdff, #7000ff);
+    border-radius: 20px;
+    border: 2px solid #050505;
+    min-height: 140px;
+    box-shadow: 0 0 14px rgba(0, 255, 136, 0.25);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #00ff88, #00d4ff, #8a2be2);
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.45);
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
