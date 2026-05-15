@@ -240,7 +240,7 @@ function fillTable() {
         ["Day 46", "Palindrome Generator", "./public/Palindrome_Generator/index.html"],
         ["Day 47", "Ping Pong Game", "./public/ping/index.html"],
         ["Day 48", "TextToVoiceConverter", "./public/TextToVoiceConverter/index.html"],
-        ["Day 49", "Url Shortener", "https://github.com/dhairyagothi/100_days_100_web_project/tree/Main/public/url_shortener"],
+        ["Day 49", "Url Shortener", "https://github.com/chandankoranga02/100_days_100_web_project/tree/Main/public/url_shortener"],
         ["Day 50", "Recipe Genie", "https://github.com/dhairyagothi/100_days_100_web_project/tree/Main/public/Recipe-Genie"],
         ["Day 51", "Netflix Landing Page Clone", "./public/Netflix_Cloning/Index.html"],
         ["Day 52", "ClimaCode", "./public/ClimaCode%202.0/index.html"],
