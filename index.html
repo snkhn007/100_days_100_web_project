@@ -156,6 +156,103 @@
 #try-readme-button:hover i {
     transform: rotate(-30deg) scale(1.2);
 }
+
+/* NAVBAR BUTTONS */
+.buttons button,
+.buttons a {
+    transition: all 0.3s ease;
+    border-radius: 12px;
+}
+
+.buttons button:hover,
+.buttons a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* SEARCH BUTTON */
+.search-btn {
+    transition: all 0.3s ease;
+    border-radius: 10px;
+}
+
+.search-btn:hover {
+    transform: scale(1.05);
+    background: #7f5af0;
+    color: white;
+}
+
+/* SEARCH INPUT */
+.search-input {
+    transition: all 0.3s ease;
+    border-radius: 12px;
+}
+
+.search-input:focus {
+    box-shadow: 0 0 15px rgba(127,90,240,0.5);
+    outline: none;
+}
+
+/* STAT CARDS */
+.stat-card {
+    transition: all 0.3s ease;
+    border-radius: 16px;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+/* SOCIAL ICONS */
+.social-btn {
+    transition: all 0.3s ease;
+}
+
+.social-btn:hover {
+    transform: scale(1.15);
+}
+
+/* SCROLL BUTTON */
+#scrollBtn {
+    transition: all 0.3s ease;
+    border-radius: 50%;
+}
+
+#scrollBtn:hover {
+    transform: scale(1.1);
+}
+
+#theme-toggle {
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 50%;
+
+    background: linear-gradient(135deg, #111, #222);
+    color: #00f5c3;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+#theme-toggle:hover {
+    transform: scale(1.1) rotate(10deg);
+    box-shadow: 0 8px 20px rgba(0,255,200,0.4);
+    background: linear-gradient(135deg, #1a1a1a, #333);
+}
+
+#theme-toggle i {
+    font-size: 20px;
+}
+
     </style>
 </body>
 
