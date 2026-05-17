@@ -37,13 +37,16 @@ A UI-based web project featuring a waving Indian flag animation, inspirational q
 
 ---
 
+
 ## 📂 Project Structure
+
+```text
 public/indianflag/
-├── img
+├── img/
 ├── flag.html
 ├── flag.css
-└── Readme.md
-
+└── README.md
+```
 
 ## 📂 How to Run
 1. Open `flag.html` in browser
