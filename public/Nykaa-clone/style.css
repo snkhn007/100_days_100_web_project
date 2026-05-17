@@ -44,7 +44,6 @@ header .right{
 .nav ul li:hover{
     color:#ee356c;
 }
-
 .inputSearch{
     background:#f5f5f9;
     padding: 7px 10px;
@@ -66,7 +65,6 @@ header .right{
     gap: 7px;
     font-weight: 500;
 }
-
 .subNavigation{
     font-size: 13px;
     padding:0px 20px;
@@ -91,7 +89,6 @@ header .right{
 .sub-navigatin-nav ul li{
     position: relative;
 }
-
 .sub-navigatin-nav{
     position: absolute;
     background-color: white;
@@ -115,7 +112,6 @@ header .right{
 .sub-navigatin-nav .imageWrap{
     gap:20px ;
 }
-
 .subNavigation li:hover .sub-navigatin-nav{
     display: flex;
 }
@@ -129,6 +125,7 @@ header .right{
 .sub-navigatin-nav .col a:first-child{
     color:#ee356c;
 }
+
 .categorySection{
     display: flex;
     flex-wrap: wrap;
