@@ -134,6 +134,17 @@ const PROJECT_DATA = [
     ['Day 116', 'AI Image Classifier', './public/AI Image Classifier/index.html', 'api javascript', 'intermediate']
 ];
 
+// Alias for consistency
+const PROJECTS = PROJECT_DATA;
+console.log('PROJECTS defined:', PROJECTS.length, 'items');
+
+// Category labels mapping
+const CATEGORY_LABEL = {
+    'beginner': 'Beginner',
+    'intermediate': 'Intermediate'
+};
+console.log('CATEGORY_LABEL defined:', CATEGORY_LABEL);
+
 // ============================================
 // 2. GITHUB REPO STATS
 // ============================================
@@ -223,7 +234,8 @@ function renderGrid() {
         const card = document.createElement('div');
         card.className = 'project-card';
 
-        const tagsHTML = tags.map(t => `<span class="tag">${t}</span>`).join('');
+        const tagsArray = typeof tags === 'string' ? tags.split(/\s+/).filter(t => t) : tags;
+        const tagsHTML = tagsArray.map(t => `<span class="tag">${t}</span>`).join('');
 
         card.innerHTML = `
             <div class="card-meta">
@@ -351,9 +363,6 @@ function initTheme() {
         localStorage.setItem('theme', isLight ? 'light' : 'dark');
     });
 }
-let currentPage = 1;
-const itemsPerPage = 10;
-let projectData = [];
 
 /* ============================================================
    SCROLL TO TOP
@@ -375,6 +384,8 @@ function initScrollBtn() {
    INIT
    ============================================================ */
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOMContentLoaded fired');
+    console.log('PROJECTS:', typeof PROJECTS, PROJECTS ? PROJECTS.length : 'undefined');
     initTheme();
     updateNavbar();
     initFilterChips();
