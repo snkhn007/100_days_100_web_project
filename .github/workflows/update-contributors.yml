@@ -1,9 +1,11 @@
 name: Update Contributors in README
 
 on:
+  workflow_dispatch:
   pull_request:
     types: [closed]
     branches:
+      - Main
       - main
 
 jobs:
