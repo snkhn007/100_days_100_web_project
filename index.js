@@ -703,12 +703,19 @@ function updateNavbar() {
   const container = document.getElementById('navButtons');
   if (!container) return;
 
-  const username = window.username || null;
-  const isRoot = !window.location.pathname.includes('/contributors/');
-  const base = isRoot ? '' : '../';
+    const username = window.username || null;
+    const isRoot   = !window.location.pathname.includes('/contributors/');
+    const base     = isRoot ? '' : '../';
+    const isLight  = document.body.classList.contains('light-mode');
+    const themeButton = `
+            <button class="btn btn-ghost btn-sm" id="themeToggleNav" aria-label="Toggle theme">
+                <i class="fas ${isLight ? 'fa-sun' : 'fa-moon'}"></i>
+            </button>
+        `;
 
-  if (username) {
-    container.innerHTML = `
+    if (username) {
+        container.innerHTML = `
+            ${themeButton}
             <span class="welcome-text">Hi, ${username}</span>
             <button class="btn btn-ghost btn-sm" id="logoutBtn">Log out</button>
             <button class="btn btn-ghost btn-sm" id="generateReadmeBtn">Generate README</button>
@@ -717,14 +724,15 @@ function updateNavbar() {
             </a>
             <a class="btn btn-ghost btn-sm" href="${base}contributors/contributor.html">Contributors</a>
         `;
-    document.getElementById('logoutBtn').addEventListener('click', () => {
-      window.username = null;
-      updateNavbar();
-    });
-    const gen = document.getElementById('generateReadmeBtn');
-    if (gen) gen.addEventListener('click', generateReadme);
-  } else {
-    container.innerHTML = `
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            window.username = null;
+            updateNavbar();
+        });
+        const gen = document.getElementById('generateReadmeBtn');
+        if (gen) gen.addEventListener('click', generateReadme);
+    } else {
+        container.innerHTML = `
+            ${themeButton}
             <a class="btn btn-ghost btn-sm" href="${base}contributors/contributor.html">Contributors</a>
             <a class="btn btn-ghost btn-sm" href="https://github.com/dhairyagothi" target="_blank">
                 <i class="fab fa-github"></i> GitHub
@@ -741,23 +749,37 @@ function updateNavbar() {
    THEME TOGGLE
    ============================================================ */
 function initTheme() {
-  const btn = document.getElementById('themeToggle');
-  if (!btn) return;
+    const saved = localStorage.getItem('theme') || 'dark';
+    let transitionTimer = null;
 
-  const icon = btn.querySelector('i');
-  const saved = localStorage.getItem('theme') || 'dark';
+    const syncThemeIcons = () => {
+        const isLight = document.body.classList.contains('light-mode');
+        const iconClass = isLight ? 'fas fa-sun' : 'fas fa-moon';
+        document.querySelectorAll('#themeToggle i, #themeToggleNav i').forEach(icon => {
+            icon.className = iconClass;
+        });
+    };
 
-  if (saved === 'light') {
-    document.body.classList.add('light-mode');
-    if (icon) icon.className = 'fas fa-sun';
-  }
+    if (saved === 'light') {
+        document.body.classList.add('light-mode');
+    }
+    syncThemeIcons();
 
-  btn.addEventListener('click', () => {
-    document.body.classList.toggle('light-mode');
-    const isLight = document.body.classList.contains('light-mode');
-    if (icon) icon.className = isLight ? 'fas fa-sun' : 'fas fa-moon';
-    localStorage.setItem('theme', isLight ? 'light' : 'dark');
-  });
+    document.body.addEventListener('click', (e) => {
+        const target = e.target.closest('#themeToggle') || e.target.closest('#themeToggleNav');
+        if (!target) return;
+
+        document.body.classList.toggle('light-mode');
+        const isLight = document.body.classList.contains('light-mode');
+        localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        syncThemeIcons();
+
+        document.body.classList.add('theme-transitioning');
+        if (transitionTimer) clearTimeout(transitionTimer);
+        transitionTimer = setTimeout(() => {
+            document.body.classList.remove('theme-transitioning');
+        }, 400);
+    });
 }
 
 /* ============================================================
@@ -811,23 +833,6 @@ document.addEventListener('DOMContentLoaded', () => {
   renderRecentProjects();
   fetchRepoStats();
   initScrollBtn();
-});
-
-const backToTopButton = document.getElementById("backToTop");
-
-window.addEventListener("scroll", () => {
-    if (window.scrollY > 200) {
-        backToTopButton.style.display = "block";
-    } else {
-        backToTopButton.style.display = "none";
-    }
-});
-
-backToTopButton.addEventListener("click", () => {
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
 });
 
 // Re-render the grid when the browser window is resized to adapt pagination density instantly
