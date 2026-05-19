@@ -146,3 +146,15 @@ for (let period = 1; period <= totalPeriods; period++) {
         container.appendChild(cell);
     }
 }
+
+const themeToggle = document.getElementById("theme-toggle");
+
+themeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark-theme");
+
+    if (document.body.classList.contains("dark-theme")) {
+        themeToggle.innerHTML = '<span id="theme-icon">☀️</span>';
+    } else {
+        themeToggle.innerHTML = '<span id="theme-icon">🌙</span>';
+    }
+});
