@@ -16,9 +16,8 @@ It is you-tube static page clone made using HTML and CSS. This project demonstra
 2. Enjoy the project!
 
 ## Screenshots
-![Alt Text](assets/to/img1.png)
-![Alt Text](assets/to/img2.png)
-![Alt Text](assets/to/img3.png)
+![laptop view](./assets/img1.png)
+![responsive](./assets/to/img2.png)
 
 ## Author Name
 Manish Yadav
