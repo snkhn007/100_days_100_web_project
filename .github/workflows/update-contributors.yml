@@ -207,8 +207,14 @@ jobs:
               exit 0
             fi
 
-            echo "Push attempt ${attempt} failed; rebasing on origin/${target_branch} and retrying..."
-            git pull --rebase origin "${target_branch}"
+            if [ "${attempt}" -lt 3 ]; then
+              echo "Push attempt ${attempt} failed; rebasing on origin/${target_branch} and retrying..."
+              if ! git pull --rebase origin "${target_branch}"; then
+                echo "Rebase failed while preparing retry; aborting."
+                git rebase --abort || true
+                exit 1
+              fi
+            fi
           done
 
           echo "Failed to push README contributor reorder changes after 3 attempts."
