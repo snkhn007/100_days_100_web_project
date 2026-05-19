@@ -44,6 +44,7 @@ jobs:
           start_marker = "<!-- readme: contributors -start -->"
           end_marker = "<!-- readme: contributors -end -->"
           columns_per_row = 6
+          commits_per_page = 100
           max_commit_pages = 10
 
           content = readme_path.read_text(encoding="utf-8")
@@ -89,7 +90,7 @@ jobs:
           while remaining_usernames and page <= max_commit_pages:
               url = (
                   f"https://api.github.com/repos/{repository}/commits"
-                  f"?per_page=100&page={page}"
+                  f"?per_page={commits_per_page}&page={page}"
               )
               request = urllib.request.Request(url, headers=headers)
               try:
@@ -126,7 +127,7 @@ jobs:
                   latest_by_username[username] = parsed_date.timestamp()
                   remaining_usernames.discard(username)
 
-              if len(payload) < 100:
+              if len(payload) < commits_per_page:
                   break
               page += 1
 
