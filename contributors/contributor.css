@@ -1,311 +1,3 @@
-.contributors-controls {
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
-  gap: 1.5rem;
-
-  margin-bottom: 4rem;
-
-  flex-wrap: wrap;
-
-  padding: 1.5rem;
-
-  background: var(--glass-bg);
-
-  border: 1px solid var(--glass-border);
-
-  border-radius: 28px;
-
-  backdrop-filter: blur(20px);
-
-  -webkit-backdrop-filter: blur(20px);
-}
-
-.contributors-controls input,
-.contributors-controls select {
-  flex: 1;
-
-  min-width: 240px;
-
-  background: rgba(255, 255, 255, 0.04);
-
-  border: 1px solid var(--glass-border);
-
-  color: var(--text-primary);
-
-  padding: 1rem 1.2rem;
-
-  border-radius: 16px;
-
-  outline: none;
-
-  font-family: inherit;
-
-  font-size: 0.95rem;
-
-  transition: var(--transition);
-
-  backdrop-filter: blur(12px);
-
-  -webkit-backdrop-filter: blur(12px);
-}
-
-.contributors-controls input::placeholder {
-  color: var(--text-secondary);
-}
-
-.contributors-controls input:focus,
-.contributors-controls select:focus {
-  border-color: var(--accent-color);
-
-  box-shadow:
-    0 0 0 4px rgba(0, 255, 136, 0.12),
-    0 0 20px var(--accent-glow);
-}
-
-#contributorSearch {
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
-}
-
-#contributorSearch:hover,
-#sortContributors:hover {
-  border-color: var(--accent-color);
-}
-
-/* Dropdown Styling */
-
-.contributors-controls select {
-  cursor: pointer;
-
-  appearance: none;
-
-  -webkit-appearance: none;
-
-  -moz-appearance: none;
-
-  background-image:
-    linear-gradient(45deg, transparent 50%, var(--text-primary) 50%),
-    linear-gradient(135deg, var(--text-primary) 50%, transparent 50%);
-
-  background-position:
-    calc(100% - 18px) calc(50% - 3px),
-    calc(100% - 12px) calc(50% - 3px);
-
-  background-size: 6px 6px;
-
-  background-repeat: no-repeat;
-
-  padding-right: 3rem;
-}
-
-/* Empty State */
-
-.empty-state {
-  text-align: center;
-
-  color: var(--text-secondary);
-
-  display: none;
-
-  margin-bottom: 4rem;
-
-  font-size: 1rem;
-
-  padding: 2rem;
-
-  border: 1px dashed var(--glass-border);
-
-  border-radius: 20px;
-
-  background: rgba(255, 255, 255, 0.02);
-}
-
-.empty-state {
-  text-align: center;
-
-  color: var(--text-secondary);
-
-  display: none;
-
-  margin-bottom: 3rem;
-
-  font-size: 1rem;
-}
-
-.contributors-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 2.5rem;
-  margin-bottom: 8rem;
-}
-
-.contributor-card {
-  background: var(--glass-bg);
-  backdrop-filter: blur(20px);
-  border: 1px solid var(--glass-border);
-  border-radius: 35px;
-  padding: 3rem 2rem;
-  text-align: center;
-  transition: var(--transition);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.contributor-card:hover {
-  transform: translateY(-15px);
-  border-color: var(--accent-color);
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.contributor-card img {
-  width: 110px;
-  height: 110px;
-  border-radius: 30px;
-  margin-bottom: 1.5rem;
-  border: 2px solid var(--glass-border);
-}
-
-.contributor-card h3 {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 1.3rem;
-  margin-bottom: 1.5rem;
-}
-
-.contributor-stats {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin-bottom: 2rem;
-}
-
-.contributor-stats .value {
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 900;
-  font-size: 1.2rem;
-  color: var(--accent-color);
-}
-
-.contributor-stats .label {
-  font-size: 0.65rem;
-  color: var(--text-secondary);
-  text-transform: uppercase;
-}
-
-.github-btn:hover {
-  background: var(--accent-color);
-  transform: scale(1.05);
-}
-
-/* Footer */
-.footer {
-  background: var(--bg-primary) !important;
-  padding: 6rem 2rem 4rem;
-  border-top: 1px solid var(--glass-border);
-}
-
-.footer-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 4rem;
-}
-
-.footer h3 {
-  font-family: 'Orbitron', sans-serif;
-  color: var(--text-primary);
-  margin-bottom: 1.5rem;
-}
-
-.footer p {
-  color: var(--text-secondary);
-}
-
-.social-links {
-  display: flex;
-  gap: 1.5rem;
-}
-
-.social-btn {
-  width: 50px;
-  height: 50px;
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-secondary);
-  font-size: 1.4rem;
-  transition: var(--transition);
-}
-
-.social-btn:hover {
-  background: var(--accent-color);
-  color: #000;
-  transform: translateY(-5px);
-}
-
-/* Stargazers */
-.stargazers-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-  padding: 2.5rem;
-  background: var(--glass-bg);
-  border-radius: 35px;
-  border: 1px solid var(--glass-border);
-  margin-bottom: 6rem;
-}
-
-.stargazer-item {
-  width: 45px;
-  height: 45px;
-  border-radius: 12px;
-  overflow: hidden;
-  transition: var(--transition);
-}
-
-.stargazer-item:hover {
-  transform: scale(1.3) translateY(-5px);
-  z-index: 2;
-}
-
-.stargazer-item img {
-  width: 100%;
-  height: 100%;
-}
-
-@media (max-width: 768px) {
-  .navbar {
-    padding: 1rem 2rem;
-  }
-  .footer-content {
-    grid-template-columns: 1fr;
-  }
-  .stats-overview {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .contributors-controls {
-    flex-direction: column;
-
-    align-items: stretch;
-
-    padding: 1.2rem;
-  }
-
-  .contributors-controls input,
-  .contributors-controls select {
-    width: 100%;
-
-    min-width: 100%;
-  }
-}
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600;700&display=swap');
 
 :root {
@@ -887,6 +579,316 @@ body {
 .popup-btn-container {
   margin-top: 1.5rem;
 }
+
+.contributors-controls {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 1.5rem;
+
+  margin-bottom: 4rem;
+
+  flex-wrap: wrap;
+
+  padding: 1.5rem;
+
+  background: var(--glass-bg);
+
+  border: 1px solid var(--glass-border);
+
+  border-radius: 28px;
+
+  backdrop-filter: blur(20px);
+
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.contributors-controls input,
+.contributors-controls select {
+  flex: 1;
+
+  min-width: 240px;
+
+  background: rgba(255, 255, 255, 0.04);
+
+  border: 1px solid var(--glass-border);
+
+  color: var(--text-primary);
+
+  padding: 1rem 1.2rem;
+
+  border-radius: 16px;
+
+  outline: none;
+
+  font-family: inherit;
+
+  font-size: 0.95rem;
+
+  transition: var(--transition);
+
+  backdrop-filter: blur(12px);
+
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.contributors-controls input::placeholder {
+  color: var(--text-secondary);
+}
+
+.contributors-controls input:focus,
+.contributors-controls select:focus {
+  border-color: var(--accent-color);
+
+  box-shadow:
+    0 0 0 4px rgba(0, 255, 136, 0.12),
+    0 0 20px var(--accent-glow);
+}
+
+#contributorSearch {
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+}
+
+#contributorSearch:hover,
+#sortContributors:hover {
+  border-color: var(--accent-color);
+}
+
+/* Dropdown Styling */
+
+.contributors-controls select {
+  cursor: pointer;
+
+  appearance: none;
+
+  -webkit-appearance: none;
+
+  -moz-appearance: none;
+
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--text-primary) 50%),
+    linear-gradient(135deg, var(--text-primary) 50%, transparent 50%);
+
+  background-position:
+    calc(100% - 18px) calc(50% - 3px),
+    calc(100% - 12px) calc(50% - 3px);
+
+  background-size: 6px 6px;
+
+  background-repeat: no-repeat;
+
+  padding-right: 3rem;
+}
+
+/* Empty State */
+
+.empty-state {
+  text-align: center;
+
+  color: var(--text-secondary);
+
+  display: none;
+
+  margin-bottom: 4rem;
+
+  font-size: 1rem;
+
+  padding: 2rem;
+
+  border: 1px dashed var(--glass-border);
+
+  border-radius: 20px;
+
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.empty-state {
+  text-align: center;
+
+  color: var(--text-secondary);
+
+  display: none;
+
+  margin-bottom: 3rem;
+
+  font-size: 1rem;
+}
+
+.contributors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2.5rem;
+  margin-bottom: 8rem;
+}
+
+.contributor-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 35px;
+  padding: 3rem 2rem;
+  text-align: center;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contributor-card:hover {
+  transform: translateY(-15px);
+  border-color: var(--accent-color);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.contributor-card img {
+  width: 110px;
+  height: 110px;
+  border-radius: 30px;
+  margin-bottom: 1.5rem;
+  border: 2px solid var(--glass-border);
+}
+
+.contributor-card h3 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+}
+
+.contributor-stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.contributor-stats .value {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: 1.2rem;
+  color: var(--accent-color);
+}
+
+.contributor-stats .label {
+  font-size: 0.65rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+.github-btn:hover {
+  background: var(--accent-color);
+  transform: scale(1.05);
+}
+
+/* Footer */
+.footer {
+  background: var(--bg-primary) !important;
+  padding: 6rem 2rem 4rem;
+  border-top: 1px solid var(--glass-border);
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 4rem;
+}
+
+.footer h3 {
+  font-family: 'Orbitron', sans-serif;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+}
+
+.footer p {
+  color: var(--text-secondary);
+}
+
+.social-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.social-btn {
+  width: 50px;
+  height: 50px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-size: 1.4rem;
+  transition: var(--transition);
+}
+
+.social-btn:hover {
+  background: var(--accent-color);
+  color: #000;
+  transform: translateY(-5px);
+}
+
+/* Stargazers */
+.stargazers-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2.5rem;
+  background: var(--glass-bg);
+  border-radius: 35px;
+  border: 1px solid var(--glass-border);
+  margin-bottom: 6rem;
+}
+
+.stargazer-item {
+  width: 45px;
+  height: 45px;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.stargazer-item:hover {
+  transform: scale(1.3) translateY(-5px);
+  z-index: 2;
+}
+
+.stargazer-item img {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem 2rem;
+  }
+  .footer-content {
+    grid-template-columns: 1fr;
+  }
+  .stats-overview {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .contributors-controls {
+    flex-direction: column;
+
+    align-items: stretch;
+
+    padding: 1.2rem;
+  }
+
+  .contributors-controls input,
+  .contributors-controls select {
+    width: 100%;
+
+    min-width: 100%;
+  }
+}
+
 
 @keyframes modalFade {
   from {
