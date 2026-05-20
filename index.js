@@ -143,12 +143,30 @@ const PROJECT_DATA = [
   ['Day 124', 'Hurdle Highway 2D',   './public/Hurdle_Highway_2D/index.html', 'game', 'intermediate'],
   ['Day 125', 'Snakeladder',   './public/Snakeladder/index.html', 'game', 'intermediate'],
   ['Day 126', 'Temperature Converter', './public/TemperatureConverter/index.html', 'tool javascript', 'beginner'],
-
+  ['Day 127', 'Particle Wave Animation', './public/Particle Wave Animation/index.html', 'css javascript', 'intermediate'],
+  ['Day 128', 'Reaction Time Test', './public/reaction-time-tester/main.html', 'animation simulation html css js javascript', 'intermediate'],
+  ['Day 129', 'YouTube Clone', './public/youtube clone/index.html', 'Html CSS', 'beginner']
 ];
 
 // Alias for consistency
 const PROJECTS = PROJECT_DATA;
 console.log('PROJECTS defined:', PROJECTS.length, 'items');
+
+
+/* ============================================================
+   SOURCE CODE URL GENERATOR
+   ============================================================ */
+function getSourceUrl(url) {
+  const trimmed = url.trim();
+  if (trimmed.startsWith('http')) return trimmed; // Already a full GitHub link
+  if (trimmed.startsWith('./')) {
+    // Converts "./public/folder/index.html" to "public/folder"
+    const folderPath = trimmed.substring(2, trimmed.lastIndexOf('/'));
+    return `https://github.com/${window.REPO_OWNER}/${window.REPO_NAME}/tree/Main/${folderPath}`;
+  }
+  return `https://github.com/${window.REPO_OWNER}/${window.REPO_NAME}/tree/Main`;
+}
+
 
 /* ============================================================
    BOOKMARK + RECENT SYSTEM
@@ -308,6 +326,7 @@ function renderGrid() {
     const isBookmarked = bookmarkedProjects.some((item) => item[0] === day);
     const tagsArray = typeof tags === 'string' ? tags.split(/\s+/).filter((t) => t) : tags;
     const tagsHTML = tagsArray.map((t) => `<span class="tag">${t}</span>`).join('');
+    const sourceUrl = getSourceUrl(url);
 
     card.innerHTML = `
             <div class="card-meta">
@@ -317,9 +336,14 @@ function renderGrid() {
             <div class="card-name">${name}</div>
             <div class="card-tags">${tagsHTML}</div>
             <div class="card-footer">
-                <a href="${url.trim()}" target="_blank" class="card-link open-project" data-id="${day}" rel="noopener noreferrer">
-                    View Demo <i class="fas fa-arrow-right"></i>
-                </a>
+                <div class="card-actions-left">
+                    <a href="${url.trim()}" target="_blank" class="card-link open-project" data-id="${day}" rel="noopener noreferrer">
+                        Demo <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="${sourceUrl}" target="_blank" class="card-link view-code-link" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i> Code
+                    </a>
+                </div>
                 <button class="bookmark-btn ${isBookmarked ? 'active' : ''}" data-id="${day}">
                     <i class="${isBookmarked ? 'fa-solid' : 'fa-regular'} fa-bookmark"></i>
                 </button>
@@ -531,6 +555,7 @@ function renderBookmarks() {
     const card = document.createElement('div');
     card.className = 'project-card';
     const tagsHTML = tags.split(' ').map((tag) => `<span class="tag">${tag}</span>`).join('');
+    const sourceUrl = getSourceUrl(url);
 
     card.innerHTML = `
             <div class="card-meta">
@@ -540,9 +565,14 @@ function renderBookmarks() {
             <div class="card-name">${name}</div>
             <div class="card-tags">${tagsHTML}</div>
             <div class="card-footer">
-                <a href="${url}" target="_blank" class="card-link open-project" data-id="${day}">
-                    View Demo <i class="fas fa-arrow-right"></i>
-                </a>
+                <div class="card-actions-left">
+                    <a href="${url}" target="_blank" class="card-link open-project" data-id="${day}">
+                        Demo <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="${sourceUrl}" target="_blank" class="card-link view-code-link" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i> Code
+                    </a>
+                </div>
                 <button class="bookmark-btn active" data-id="${day}">
                     <i class="fa-solid fa-bookmark"></i>
                 </button>
@@ -577,6 +607,7 @@ function renderRecentProjects() {
     card.className = 'project-card';
     const tagsHTML = tags.split(' ').map((tag) => `<span class="tag">${tag}</span>`).join('');
     const isBookmarked = bookmarkedProjects.some((item) => item[0] === day);
+    const sourceUrl = getSourceUrl(url);
 
     card.innerHTML = `
             <div class="card-meta">
@@ -586,9 +617,14 @@ function renderRecentProjects() {
             <div class="card-name">${name}</div>
             <div class="card-tags">${tagsHTML}</div>
             <div class="card-footer">
-                <a href="${url}" target="_blank" class="card-link open-project" data-id="${day}">
-                    View Demo <i class="fas fa-arrow-right"></i>
-                </a>
+                <div class="card-actions-left">
+                    <a href="${url}" target="_blank" class="card-link open-project" data-id="${day}">
+                        Demo <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="${sourceUrl}" target="_blank" class="card-link view-code-link" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i> Code
+                    </a>
+                </div>
                 <button class="bookmark-btn ${isBookmarked ? 'active' : ''}" data-id="${day}">
                     <i class="${isBookmarked ? 'fa-solid' : 'fa-regular'} fa-bookmark"></i>
                 </button>

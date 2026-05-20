@@ -909,6 +909,21 @@ body.light-mode .navbar {
     transform 0.18s ease;
 }
 
+.card-actions-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.view-code-link {
+  color: var(--text-secondary);
+}
+
+.view-code-link:hover {
+  color: var(--text-primary);
+  transform: translateY(-1px);
+}
+
 .bookmark-btn {
   width: 38px;
   height: 38px;
