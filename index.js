@@ -714,6 +714,7 @@ function initFilterChips() {
 function initSearch() {
   const input = document.getElementById('searchInput');
   if (!input) return;
+
   input.addEventListener('input', () => {
     searchQuery = input.value.trim();
     currentPage = 1;
@@ -721,19 +722,47 @@ function initSearch() {
   });
 }
 
+initSearch(); // 
+
+const searchInput = document.getElementById('searchInput');
+const clearBtn = document.getElementById("clearSearch");
+
 function syncProjectCounts() {
   const total = PROJECTS.length.toLocaleString();
-  const countNodes = [document.getElementById('projectCount'), document.getElementById('allCount')];
+
+  const countNodes = [
+    document.getElementById('projectCount'),
+    document.getElementById('allCount')
+  ];
 
   countNodes.forEach((node) => {
     if (node) node.textContent = total;
   });
 
-  const searchInput = document.getElementById('searchInput');
   if (searchInput) {
     searchInput.placeholder = `Search ${total} projects…`;
   }
 }
+
+// Clear button functionality
+if (searchInput && clearBtn) {
+  clearBtn.addEventListener("click", () => {
+    searchInput.value = "";
+    searchInput.dispatchEvent(new Event("input"));
+    searchInput.focus();
+  });
+
+  searchInput.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      searchInput.value = "";
+      searchInput.dispatchEvent(new Event("input"));
+      searchInput.focus();
+    }
+  });
+}
+
+// initialize
+syncProjectCounts();
 
 /* ============================================================
    NAVBAR — dynamic based on login state
