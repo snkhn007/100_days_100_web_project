@@ -144,7 +144,8 @@ const PROJECT_DATA = [
   ['Day 125', 'Snakeladder',   './public/Snakeladder/index.html', 'game', 'intermediate'],
   ['Day 126', 'Temperature Converter', './public/TemperatureConverter/index.html', 'tool javascript', 'beginner'],
   ['Day 127', 'Particle Wave Animation', './public/Particle Wave Animation/index.html', 'css javascript', 'intermediate'],
-  ['Day 128', 'Reaction Time Test', './public/reaction-time-tester/main.html', 'animation simulation html css js javascript', 'intermediate']
+  ['Day 128', 'Reaction Time Test', './public/reaction-time-tester/main.html', 'animation simulation html css js javascript', 'intermediate'],
+  ['Day 129', 'Big Sales Prediction', './public/BigSales-Prediction/frontend/index.html', 'machine learning random forest fastapi react vite recharts python javascript', 'advanced']
 ];
 
 // Alias for consistency
