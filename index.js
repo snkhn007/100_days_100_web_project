@@ -173,7 +173,8 @@ const PROJECT_DATA = [
    ['Day 135', 'Shooting game', './public/shooting game/index.html', '2d game', 'intermediate'],
    ['Day 136', 'Sudoku Solver', './public/sudoku-solver/index.html', 'game javascript', 'intermediate'],
   ['Day 137', 'Maths Quiz Game', './public/maths-quiz-game/index.html', 'game javascript', 'intermediate'],
-  ['Day 138', 'Age Calculator', './public/age-calculator/index.html', 'tool javascript', 'beginner']
+  ['Day 138', 'Age Calculator', './public/age-calculator/index.html', 'tool javascript', 'beginner'],
+  ['Day 139', 'Contest Tracker', './public/ContestTracker/index.html', 'tool javascript', 'advanced']
 
 ];
 // Alias for consistency
