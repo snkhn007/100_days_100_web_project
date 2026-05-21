@@ -1,204 +1,168 @@
 :root {
     --primary-color: #4a90e2;
     --secondary-color: #f5a623;
-    --background-light: #f0f4f8;
-    --text-light: #333;
-    --card-light: #ffffff;
-    --shadow-light: rgba(0, 0, 0, 0.1);
-    
-    --background-dark: #1a1a1a;
-    --text-dark: #f0f0f0;
-    --card-dark: #2a2a2a;
-    --shadow-dark: rgba(255, 255, 255, 0.1);
+    --background-color: #f0f4f8;
+    --text-color: #333;
+    --card-color: #ffffff;
+    --shadow-color: rgba(0,0,0,0.1);
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-body {
-    font-family: 'Poppins', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: var(--background-light);
-    color: var(--text-light);
-    transition: background-color 0.3s, color 0.3s;
-    padding: 20px;
+body{
+    font-family:'Poppins',sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    background-color:var(--background-color);
+    color:var(--text-color);
+    transition:0.4s;
+    padding:20px;
 }
 
-body.dark-mode {
-    background-color: var(--background-dark);
-    color: var(--text-dark);
+.container{
+    width:100%;
+    max-width:700px;
+    text-align:center;
 }
 
-.container {
-    max-width: 600px;
-    width: 100%;
-    text-align: center;
+.card{
+    background:var(--card-color);
+    padding:20px;
+    border-radius:15px;
+    margin-bottom:20px;
+    box-shadow:0 4px 6px var(--shadow-color);
+    transition:0.4s;
 }
 
-.card {
-    background-color: var(--card-light);
-    border-radius: 15px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 6px var(--shadow-light);
-    transition: background-color 0.3s, box-shadow 0.3s;
+.head{
+    color:var(--primary-color);
+    margin-bottom:10px;
 }
 
-.dark-mode .card {
-    background-color: var(--card-dark);
-    box-shadow: 0 4px 6px var(--shadow-dark);
+.subhead{
+    color:var(--secondary-color);
+    margin-bottom:20px;
 }
 
-.head {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-    color: var(--primary-color);
+input,
+select{
+    width:100%;
+    padding:12px;
+    margin-bottom:12px;
+    border-radius:8px;
+    border:1px solid #ccc;
 }
 
-.subhead {
-    color: var(--secondary-color);
-    font-size: 1rem;
-    margin-bottom: 1.5rem;
+button{
+    border:none;
+    padding:12px 18px;
+    border-radius:8px;
+    cursor:pointer;
+    background:var(--primary-color);
+    color:white;
+    transition:0.3s;
 }
 
-.input-section, .qr-options {
-    margin-bottom: 1rem;
+button:hover{
+    transform:translateY(-2px);
 }
 
-input[type="text"], input[type="password"], select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
+.submit{
+    width:100%;
+    margin-bottom:20px;
 }
 
-button {
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 1rem;
-    margin: 10px 0;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s, transform 0.1s;
+.qr-options{
+    display:flex;
+    flex-wrap:wrap;
+    gap:15px;
 }
 
-button:hover {
-    background-color: #3a7bc8;
-    transform: translateY(-2px);
+.option{
+    flex:1 1 45%;
 }
 
-button:active {
-    transform: translateY(0);
+.option label{
+    display:block;
+    margin-bottom:5px;
+    font-weight:600;
 }
 
-.result-card {
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    justify-content: center;
+#qrcode{
+    margin:20px auto;
 }
 
-#qrcode {
-    margin: 1rem auto;
+.qr-actions{
+    display:flex;
+    gap:10px;
+    justify-content:center;
+    flex-wrap:wrap;
 }
 
-.qr-options {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+.qr-actions button{
+    flex:1;
+    min-width:150px;
 }
 
-.option {
-    flex-basis: 48%;
-    margin-bottom: 10px;
+#qr-reader{
+    max-width:300px;
+    margin:auto;
 }
 
-.option label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 600;
+/* THEMES */
+
+body[data-theme="dark"]{
+    --primary-color:#90caf9;
+    --secondary-color:#ffb74d;
+    --background-color:#121212;
+    --text-color:#f5f5f5;
+    --card-color:#1f1f1f;
+    --shadow-color:rgba(255,255,255,0.1);
 }
 
-#qr-color {
-    width: 100%;
-    height: 40px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    cursor: pointer;
-    padding: 2px;
+body[data-theme="blue"]{
+    --primary-color:#1565c0;
+    --secondary-color:#42a5f5;
+    --background-color:#e3f2fd;
+    --text-color:#0d47a1;
 }
 
-#qr-color::-webkit-color-swatch-wrapper {
-    padding: 0;
+body[data-theme="green"]{
+    --primary-color:#2e7d32;
+    --secondary-color:#66bb6a;
+    --background-color:#e8f5e9;
+    --text-color:#1b5e20;
 }
 
-#qr-color::-webkit-color-swatch {
-    border: none;
-    border-radius: 3px;
+/* THEME SWITCHER */
+
+.theme-switcher{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin-bottom:20px;
 }
 
-#qr-color::-moz-color-swatch {
-    border: none;
-    border-radius: 3px;
-}
-#toggle-theme {
-    background-color: var(--secondary-color);
-    color: var(--text-light);
+.theme-btn{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    font-size:18px;
 }
 
-.dark-mode #toggle-theme {
-    background-color: var(--primary-color);
-    color: var(--text-dark);
-}
+@media(max-width:600px){
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.card {
-    animation: fadeIn 0.5s ease-out;
-}
-
-@media only screen and (max-width: 600px) {
-    .container {
-        padding: 10px;
+    .option{
+        flex:1 1 100%;
     }
-    
-    .option {
-        flex-basis: 100%;
+
+    .qr-actions{
+        flex-direction:column;
     }
-}
-
-.qr-actions {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
-
-.qr-actions button {
-    flex: 1;
-    max-width: 150px;
-}
-
-#qr-reader {
-    max-width: 300px;
-    margin: 1rem auto;
-}
-
-.fas {
-    margin-right: 5px;
 }
