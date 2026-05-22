@@ -229,6 +229,7 @@ const PROJECT_DATA = [
   ['Day 152', 'Physics Ball Simulation', './public/PhysicsBallSimulation/index.html', 'html css javascript canvas', 'advanced'],
   ['Day 153', 'Material3 Showcase', './public/Material3Showcase/index.html', 'tool javascript', 'intermediate'],
   ['Day 154', 'FocusRoom', './public/FocusRoom/index.html', 'html css javascript productivity timer tasks ambient', 'intermediate'],
+  ['Day 155', 'Tenzies Game', './public/TENZI-GAME/index.html', 'game react components javascript', 'intermediate'],
 ];
 const PROJECTS = PROJECT_DATA;
 
