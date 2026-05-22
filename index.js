@@ -1155,18 +1155,15 @@ function initScrollBtn() {
    INIT
    ============================================================ */
 document.addEventListener('DOMContentLoaded', () => {
-  getAllTechnologies();
-
   initTheme();
   updateNavbar();
+
   initFilterChips();
   initSearch();
   initSorting();
-  initTechStackSearch(); // Initialize tech stack search
+  initTechStackSearch();
+
   syncProjectCounts();
-  renderGrid();
-  renderBookmarks();
-  renderRecentProjects();
   fetchRepoStats();
   initScrollBtn();
 });
