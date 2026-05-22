@@ -1,11 +1,8 @@
 const btn = document.querySelector('.talk');
 const content = document.querySelector('.content');
 const typingText = document.getElementById('typing-text');
-
-/* =========================
-   SPEAK FUNCTION
-========================= */
-
+const status = document.querySelector('.status-text');
+const wave =document.querySelector('.wave-container');
 function speak(text) {
 
     const text_speak = new SpeechSynthesisUtterance(text);
@@ -16,10 +13,6 @@ function speak(text) {
 
     window.speechSynthesis.speak(text_speak);
 }
-
-/* =========================
-   GREETING FUNCTION
-========================= */
 
 function wishMe() {
 
@@ -39,9 +32,7 @@ function wishMe() {
     }
 }
 
-/* =========================
-   LOADING + STARTUP
-========================= */
+
 
 window.addEventListener('load', () => {
 
@@ -54,9 +45,7 @@ window.addEventListener('load', () => {
     }, 2000);
 });
 
-/* =========================
-   TYPING ANIMATION
-========================= */
+
 
 const messages = [
     "Initializing JARVIS...",
@@ -89,20 +78,11 @@ function typingAnimation() {
     setTimeout(typingAnimation, 120);
 }
 
-/* =========================
-   SPEECH RECOGNITION
-========================= */
-
 const SpeechRecognition =
     window.SpeechRecognition ||
     window.webkitSpeechRecognition;
 
 const recognition = new SpeechRecognition();
-
-/* =========================
-   VOICE RESULT
-========================= */
-
 recognition.onresult = (event) => {
 
     const currentIndex = event.resultIndex;
@@ -115,24 +95,35 @@ recognition.onresult = (event) => {
     takeCommand(transcript.toLowerCase());
 };
 
-/* =========================
-   BUTTON CLICK
-========================= */
-
 btn.addEventListener('click', () => {
+
 
     content.textContent = "Listening...";
 
-    btn.classList.add("active");
+    btn.classList.add('active');
 
-    recognition.start();
+if (wave) {
+    wave.classList.add('active');
+}
 
+content.textContent = "Listening...";
+
+if (status) {
+    status.textContent = "Jarvis is listening";
+}
+
+recognition.start();
+
+speak("Listening");
     speak("Listening");
 });
 
-/* =========================
-   COMMAND FUNCTION
-========================= */
+recognition.onend = () => {
+    btn.classList.remove('active');
+    wave.classList.remove('active');
+    content.textContent ="Click here to speak";
+    status.textContent ="Idle";
+};
 
 function takeCommand(message) {
 
@@ -248,3 +239,34 @@ function takeCommand(message) {
         );
     }
 }
+
+particlesJS("particles-js", {
+
+    particles: {
+        number: {value: 45,density: {enable: true,value_area: 800}},
+        color: {value: "#00bcd4"},
+        shape: {type: "circle"},
+        opacity: {value: 0.25},
+        size: { value: 2},
+        line_linked: {
+            enable: true,
+            distance: 140,
+            color: "#00bcd4",
+            opacity: 0.08,
+            width: 1
+        },
+        move: {
+            enable: true,
+            speed: 0.4
+        }
+    },
+
+    interactivity: {
+        detect_on: "canvas",
+        events: {
+            onhover: {enable: false},
+            resize: true
+        }
+    },
+    retina_detect: true
+});

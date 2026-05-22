@@ -9,7 +9,7 @@
     <title>JARVIS - Virtual Assistant</title>
 
     <link rel="shortcut icon" href="avatar.png" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style.css">
     <link rel="icon" href="../favv.png" type="image/x-icon" />
 
     <link rel="stylesheet"
@@ -19,6 +19,15 @@
 <body>
 
     <section class="main">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+<body>
+    <div id="particles-js"></div>
+    <section class="main">
+        <div class="card"></div>
 
         <div class="image-container">
 
@@ -46,15 +55,26 @@
             <button class="talk" aria-label="Start Voice Assistant">
                 <i class="fas fa-microphone-alt"></i>
             </button>
+            <div class='status-container'>
+                <h1 class="content"> Click here to speak</h1>
+                <span class="status-text"> Idle </span>
+                <div class="wave-container">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
 
-            <h1 class="content">
-                Click here to speak
-            </h1>
+                </div>
+            </div>
 
         </div>
 
     </section>
 
+
+
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
     <script src="app.js"></script>
 
 </body>
