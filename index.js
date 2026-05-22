@@ -145,34 +145,49 @@ const CATEGORY_LABEL = {
    ============================================================ */
 async function fetchRepoStats() {
 
-    const fallback = { stars: 122, forks: 182, issues: 94, prs: 12 };
-
     const set = (id, val) => {
         const el = document.getElementById(id);
-        if (el) el.textContent = Number(val).toLocaleString();
+        if (el) el.textContent = val;
     };
 
-    set('starCount',  fallback.stars);
-    set('forkCount',  fallback.forks);
-    set('issueCount', fallback.issues);
-    set('prCount',    fallback.prs);
+    const setFallback = () => {
+        set('starCount', 'N/A');
+        set('forkCount', 'N/A');
+        set('issueCount', 'N/A');
+        set('prCount', 'N/A');
+    };
 
     try {
+
+        // Optional loading state
+        set('starCount', 'Loading...');
+        set('forkCount', 'Loading...');
+        set('issueCount', 'Loading...');
+        set('prCount', 'Loading...');
+
         const [repoRes, prRes] = await Promise.all([
             fetch(`https://api.github.com/repos/${window.REPO_OWNER}/${window.REPO_NAME}`),
             fetch(`https://api.github.com/search/issues?q=repo:${window.REPO_OWNER}/${window.REPO_NAME}+type:pr+state:open`)
         ]);
-        if (!repoRes.ok || !prRes.ok) throw new Error("Stats fetch failed");
-        const repo = await repoRes.json();
-        const prs  = await prRes.json();
 
-        set('starCount',  repo.stargazers_count);
-        set('forkCount',  repo.forks_count);
-        set('issueCount', repo.open_issues_count - prs.total_count);
-        set('prCount',    prs.total_count);
+        if (!repoRes.ok || !prRes.ok) {
+            throw new Error("GitHub API request failed");
+        }
+
+        const repo = await repoRes.json();
+        const prs = await prRes.json();
+
+        set('starCount', repo.stargazers_count.toLocaleString());
+        set('forkCount', repo.forks_count.toLocaleString());
+        set('issueCount', (repo.open_issues_count - prs.total_count).toLocaleString());
+        set('prCount', prs.total_count.toLocaleString());
 
     } catch (e) {
-        console.warn("GitHub stats unavailable — showing fallback values:", e.message);
+
+        console.warn("GitHub stats unavailable:", e.message);
+
+        // Show fallback text instead of permanent dashes
+        setFallback();
     }
 }
 // NOTE (difficulty): Generating content client-side must sanitize URLs and
