@@ -2558,6 +2558,14 @@ Thanks to all these amazing people who have contributed to this project:
                     <sub><b>kriti260</b></sub>
                 </a>
             </td>
+		</tr>
+		<td align="center">
+                <a href="https://github.com/NidhiS-7">
+                    <img src="https://avatars.githubusercontent.com/u/236889064?v=4" width="96;" alt="Nidhi Satle"/>
+                    <br />
+                    <sub><b>Nidhi Satle</b></sub>
+                </a>
+            </td>
             <td align="center">
                 <a href="https://github.com/KhushiYadav-26">
                     <img src="https://avatars.githubusercontent.com/u/188696325?v=4" width="96;" alt="KhushiYadav-26"/>
