@@ -20,53 +20,55 @@
 <body>
 
   <div class="dashboard-layout">
-    
-    <!-- LEFT SIDEBAR -->
-    <aside class="sidebar">
-      <div class="logo">
-        <div class="logo-icon"><i data-lucide="layers"></i></div>
-        <h2>HabitFlow</h2>
-        <button id="closeMenuBtn" class="close-sidebar-btn" aria-label="Close menu"><i data-lucide="x"></i></button>
-      </div>
-      
-      <nav class="sidebar-nav" id="sidebarNav">
-        <div class="nav-group">
-          <p class="nav-section-title">Views</p>
-          <a href="#" class="nav-item active" data-filter="all">
-            <i data-lucide="layout-grid"></i> Dashboard
-          </a>
-          <a href="#" class="nav-item" data-filter="today">
-            <i data-lucide="calendar"></i> Today
-          </a>
-          <a href="#" class="nav-item" data-filter="completed">
-            <i data-lucide="check-circle-2"></i> Completed
-          </a>
-          <a href="#" class="nav-item" data-filter="missed">
-            <i data-lucide="x-circle"></i> Missed
-          </a>
-        </div>
-        
-        <div class="nav-group">
-          <p class="nav-section-title">Categories</p>
-          <a href="#" class="nav-item category-item" data-category="Health">
-            <span class="category-dot health"></span> Health
-          </a>
-          <a href="#" class="nav-item category-item" data-category="Work">
-            <span class="category-dot work"></span> Work
-          </a>
-          <a href="#" class="nav-item category-item" data-category="Personal">
-            <span class="category-dot personal"></span> Personal
-          </a>
-        </div>
-      </nav>
 
-      <div class="theme-switch-wrapper">
-        <button id="theme-toggle">
-          <i data-lucide="moon" class="theme-icon"></i> <span id="theme-text">Dark Mode</span>
-        </button>
-      </div>
-    </aside>
+  <!-- LEFT SIDEBAR -->
+  <aside class="sidebar">
+    <div class="logo">
+      <div class="logo-icon"><i data-lucide="layers"></i></div>
+      <h2>HabitFlow</h2>
+      <button id="closeMenuBtn" class="close-sidebar-btn" aria-label="Close menu">
+        <i data-lucide="x"></i>
+      </button>
+    </div>
 
+    <nav class="sidebar-nav" id="sidebarNav">
+      <div class="nav-group">
+        <p class="nav-section-title">Views</p>
+        <a href="#" class="nav-item active" data-filter="all">
+          <i data-lucide="layout-grid"></i> Dashboard
+        </a>
+        <a href="#" class="nav-item" data-filter="today">
+          <i data-lucide="calendar"></i> Today
+        </a>
+        <a href="#" class="nav-item" data-filter="completed">
+          <i data-lucide="check-circle-2"></i> Completed
+        </a>
+        <a href="#" class="nav-item" data-filter="missed">
+          <i data-lucide="x-circle"></i> Missed
+        </a>
+      </div>
+
+      <div class="nav-group">
+        <p class="nav-section-title">Categories</p>
+        <a href="#" class="nav-item category-item" data-category="Health">
+          <span class="category-dot health"></span> Health
+        </a>
+        <a href="#" class="nav-item category-item" data-category="Work">
+          <span class="category-dot work"></span> Work
+        </a>
+        <a href="#" class="nav-item category-item" data-category="Personal">
+          <span class="category-dot personal"></span> Personal
+        </a>
+      </div>
+    </nav>
+
+    <div class="theme-switch-wrapper">
+      <button id="theme-toggle">
+        <i data-lucide="moon" class="theme-icon"></i>
+        <span id="theme-text">Dark Mode</span>
+      </button>
+    </div>
+  </aside>
     <!-- MAIN CONTENT -->
     <main class="main-content">
       <header class="main-header">
