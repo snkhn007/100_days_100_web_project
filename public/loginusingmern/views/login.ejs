@@ -22,14 +22,27 @@
         <!-- The Wrapper contains all the inputs -->
         <div class="mainContainer">
             <!-- Username -->
-            <label for="username">Username</label>
-            <input type="text" placeholder="Enter Your Username Here" name="username" id="username" autocomplete="username" required>
-
-            <br><br>
+            <div class="input-group">
+                <label for="username">Username</label>
+            
+                <input type="text" placeholder="Enter Your Username Here" name="username" id="username" autocomplete="username"
+                    required>
+            </div>
 
             <!-- Password -->
-            <label for="password">Password</label>
-            <input type="password" placeholder="Enter Your Password Here" name="password" id="password" required autocomplete="current-password">
+
+            <div class="password-field">
+            <div class="input-group">
+                <label for="password">Password</label>
+            
+                <div class="input-wrapper">
+                    <input type="password" placeholder="Enter Your Password Here" name="password" id="password" required
+                        autocomplete="current-password">
+            
+                    <span id="togglePassword">👁️</span>
+                </div>
+            </div>
+            </div>
 
             <!-- sub-container for the checkbox and forgot password link -->
             <div class="subcontainer">
@@ -81,7 +94,27 @@
         postRequest({ username, password })
     }
 
+    
+    document.addEventListener("DOMContentLoaded", () => {
 
+    const passwordInput = document.getElementById("password");
+    const togglePassword = document.getElementById("togglePassword");
+
+    togglePassword.addEventListener("click", () => {
+
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            togglePassword.textContent = "🙈";
+        } else {
+            passwordInput.type = "password";
+            togglePassword.textContent = "👁️";
+        }
+
+    });
+
+});
+
+    
 </script>
 
 </html>
