@@ -432,51 +432,6 @@ async function fetchRepoStats() {
         setFallback();
     }
 }
-// NOTE (difficulty): Generating content client-side must sanitize URLs and
-// avoid heavy sync work; large project lists may block the main thread.
-  try {
-    const [repoRes, prRes] = await Promise.all([
-      fetch(`https://api.github.com/repos/${window.REPO_OWNER}/${window.REPO_NAME}`).catch(() => null),
-      fetch(`https://api.github.com/search/issues?q=repo:${window.REPO_OWNER}/${window.REPO_NAME}+type:pr+state:open`).catch(() => null),
-    ]);
-
-    const repo = repoRes && repoRes.ok ? await repoRes.json() : null;
-    const prs = prRes && prRes.ok ? await prRes.json() : null;
-    const prCount = Number.isFinite(prs?.total_count) ? prs.total_count : null;
-
-    const setNumber = (id, val) => {
-      const el = document.getElementById(id);
-      if (!el) return;
-      const numericVal = Number(val);
-      if (!Number.isFinite(numericVal)) return;
-      el.textContent = numericVal.toLocaleString();
-    };
-
-    if (repo) {
-      setNumber('starCount', repo.stargazers_count);
-      setNumber('forkCount', repo.forks_count);
-      const issueCount = prCount !== null ? repo.open_issues_count - prCount : repo.open_issues_count;
-      if (issueCount < 0) {
-        console.warn('GitHub stats issue count negative:', {
-          openIssues: repo.open_issues_count,
-          prCount,
-        });
-      }
-      setNumber('issueCount', Math.max(issueCount, 0));
-    }
-
-    if (prCount !== null) {
-      setNumber('prCount', prCount);
-    }
-
-    if (!repo && !prs) {
-      console.warn('GitHub stats unavailable: Stats fetch failed');
-    }
-  } catch (e) {
-    console.warn('GitHub stats unavailable:', e.message);
-  }
-}
-
 function generateReadme() {
   try {
     const lines = [];
