@@ -230,10 +230,10 @@ const PROJECT_DATA = [
   ['Day 156', 'Placement Predictor', './public/Placement-Predictor/index.html', 'tool javascript html css', 'advanced'],
   ['Day 157', 'Map Route Tracker', './public/Vector-Map-Route-Tracer/index.html', 'html css javascript', 'advanced'],
   ['Day 158', 'GitHub Promo Maker', './public/GitHubPromoMaker/index.html', 'html css javascript', 'intermediate'],
-
-  ['Day 159' , 'Dining Philosophers Simulation' , './public/Dining Philosophers Simulation/index.html' , 'simulation algorithm javascript' , 'intermediate' ] ,
+  ['Day 159', 'Dining Philosophers Simulation', './public/Dining Philosophers Simulation/index.html', 'simulation algorithm javascript', 'intermediate'],
   ['Day 160', 'Website Personalizer', './public/WebsitePersonalizer/index.html', 'html css javascript', 'intermediate'],
   ['Day 161', "Unit-Converter", './public/Unit-Converter/index.html' , 'tool javascript html css' , 'intermediate'],
+  ['Day 162', 'Color Palette From Art Generator', './public/ColorPaletteArtGenerator/index.html', 'html css javascript', 'intermediate'],
 ];
 const PROJECTS = PROJECT_DATA;
 
@@ -546,18 +546,11 @@ function renderGrid() {
   pageItems.forEach(([day, name, url, tags]) => {
     const category = getCategoryFromTags(tags, name);
     const card = document.createElement('div');
-    
+
     // FIX PART 1: Add a pointer cursor so users know it's clickable
     card.className = 'project-card';
-    const isBookmarked = bookmarkedProjects ? bookmarkedProjects.some((item) => item[0] === day) : false;
-    
-    // Safe tags handling
-    let tagsArray = [];
-    if (tags) {
-      tagsArray = typeof tags === 'string' ? tags.split(/\s+/).filter((t) => t) : tags;
-    }
-    card.style.cursor = 'pointer'; 
-    
+    card.style.cursor = 'pointer';
+
     // FIX PART 2: Make the whole card clickable to open the demo in a new tab
     card.onclick = () => window.open(url.trim(), '_blank');
 
@@ -1117,7 +1110,7 @@ function updateNavbar() {
         `;
   const otherLink = isRoot
     ? `<a class="btn btn-ghost btn-sm" href="${base}contributors/contributor.html">Contributors</a>`
-    : `<a class="btn btn-ghost btn-sm" href="${base}index.html">Home</a>`;
+    : `<a class="btn btn-ghost btn-sm" href="${base}index.html"><i class="fas fa-home"></i> Home</a>`;
 
   if (username) {
     container.innerHTML = `
@@ -1140,7 +1133,7 @@ function updateNavbar() {
     container.innerHTML = `
             ${themeButton}
             ${otherLink}
-            <a class="btn btn-ghost btn-sm" href="https://github.com/dhairyagothi" target="_blank">
+            <a class="btn btn-ghost btn-sm" href="https://github.com/dhairyagothi/100_days_100_web_project" target="_blank">
                 <i class="fab fa-github"></i> GitHub
             </a>
             <button class="btn btn-ghost btn-sm" id="generateReadmeBtn">Generate README</button>
@@ -1296,7 +1289,7 @@ window.addEventListener('resize', () => {
    (Required for HTML onclick handlers)
    ============================================================ */
 window.removeTechFilter = removeTechFilter;
-window.clearAllTechFilters = clearAllTechFilters; 
+window.clearAllTechFilters = clearAllTechFilters;
 
 // Particle Network Background
 (function () {
@@ -1318,7 +1311,7 @@ window.clearAllTechFilters = clearAllTechFilters;
         y: Math.random() * H,
         vx: (Math.random() - 0.5) * 0.3,
         vy: (Math.random() - 0.5) * 0.3,
-        r: Math.random() * 3 + 1, 
+        r: Math.random() * 3 + 1,
         hue: [220, 260, 280][Math.floor(Math.random() * 3)],
         alpha: Math.random() * 0.8 + 0.4,
       });
@@ -1385,11 +1378,11 @@ function updateURL(search, category) {
 function restoreStateFromURL() {
   const { search, category } = getQueryParams();
   const searchInput = document.getElementById('search') ||
-                      document.querySelector('input[type="text"]') ||
-                      document.querySelector('.search-input');
+    document.querySelector('input[type="text"]') ||
+    document.querySelector('.search-input');
   if (searchInput && search) searchInput.value = search;
   const categoryFilter = document.querySelector('select') ||
-                          document.getElementById('category');
+    document.getElementById('category');
   if (categoryFilter && category !== 'all') categoryFilter.value = category;
   if (search || category !== 'all') applyFilters(search, category);
 }
@@ -1408,8 +1401,8 @@ function applyFilters(search, category) {
 document.addEventListener('DOMContentLoaded', () => {
   restoreStateFromURL();
   const searchInput = document.getElementById('search') ||
-                      document.querySelector('input[type="text"]') ||
-                      document.querySelector('.search-input');
+    document.querySelector('input[type="text"]') ||
+    document.querySelector('.search-input');
   if (searchInput) {
     searchInput.addEventListener('input', () => {
       const { category } = getQueryParams();
@@ -1418,7 +1411,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   const categoryFilter = document.querySelector('select') ||
-                          document.getElementById('category');
+    document.getElementById('category');
   if (categoryFilter) {
     categoryFilter.addEventListener('change', () => {
       const { search } = getQueryParams();
