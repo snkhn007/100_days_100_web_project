@@ -9,21 +9,6 @@ accordion_containers.forEach((accordion_container) => {
   });
 });
 
-// const locationBox = document.querySelector(".location");
-// const dropdown = document.querySelector(".location-dropdown");
-// const locationInput = document.querySelector(".location-input");
-// const dropdownItems = document.querySelectorAll(".dropdown-item");
-
-// locationBox.addEventListener("click", () => {
-//   dropdown.classList.toggle("hidden");
-// });
-
-// dropdownItems.forEach((item) => {
-//   item.addEventListener("click", () => {
-//     locationInput.value = item.textContent;
-//     dropdown.classList.add("hidden");
-//   });
-// });
 document.addEventListener("DOMContentLoaded", () => {
 
   const states = [
