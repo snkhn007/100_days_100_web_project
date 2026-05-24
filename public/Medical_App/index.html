@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MedConsult Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/public/Medical_App/styles.css">
 </head>
 
 <body>
@@ -44,6 +44,27 @@
             </button>
 
         </form>
+    </section>
+
+    <section class="card">
+        <h2>👨‍⚕️ Available Doctors</h2>
+        <div class="doctors-grid">
+            <div class="doctor-card">
+                <h3>Dr. Sarah Jenkins</h3>
+                <p class="specialty">Cardiologist</p>
+                <button class="primary-btn book-btn" data-doctor="Dr. Sarah Jenkins" data-specialty="Cardiologist">Book Appointment</button>
+            </div>
+            <div class="doctor-card">
+                <h3>Dr. James Smith</h3>
+                <p class="specialty">Neurologist</p>
+                <button class="primary-btn book-btn" data-doctor="Dr. James Smith" data-specialty="Neurologist">Book Appointment</button>
+            </div>
+            <div class="doctor-card">
+                <h3>Dr. Emily Watson</h3>
+                <p class="specialty">Pediatrician</p>
+                <button class="primary-btn book-btn" data-doctor="Dr. Emily Watson" data-specialty="Pediatrician">Book Appointment</button>
+            </div>
+        </div>
     </section>
 
     <section class="card">
@@ -108,7 +129,59 @@
 
 </main>
 
-<script src="script.js"></script>
+<!-- Appointment Booking Modal -->
+<div id="bookingModal" class="booking-modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="booking-modal-content">
+        <button id="closeModalBtn" class="close-btn" aria-label="Close modal">&times;</button>
+        <h2 id="modalTitle">Book Appointment</h2>
+        <p id="modalSubtitle"></p>
+        
+        <div id="modalSuccess" class="success-message hidden">
+            <span class="success-text"></span>
+            <button type="button" id="closeSuccessBtn" class="primary-btn success-close-btn">Close</button>
+        </div>
+        
+        <form id="bookingForm">
+            <div class="form-group">
+                <label for="patientName">Patient Name</label>
+                <input type="text" id="patientName" placeholder="Enter patient name" required>
+                <span id="nameError" class="error-message"></span>
+            </div>
+            
+            <div class="form-group">
+                <label for="patientPhone">Phone Number</label>
+                <input type="tel" id="patientPhone" placeholder="Enter 10-digit phone number" maxlength="10" required>
+                <span id="phoneError" class="error-message"></span>
+            </div>
+            
+            <div class="form-group">
+                <label for="appointmentDate">Preferred Date</label>
+                <input type="date" id="appointmentDate" required>
+                <span id="dateError" class="error-message"></span>
+            </div>
+            
+            <div class="form-group">
+                <label for="appointmentTime">Preferred Time Slot</label>
+                <select id="appointmentTime" required>
+                    <option value="">Select a time slot</option>
+                    <option value="09:00 AM - 10:00 AM">09:00 AM - 10:00 AM</option>
+                    <option value="10:00 AM - 11:00 AM">10:00 AM - 11:00 AM</option>
+                    <option value="11:00 AM - 12:00 PM">11:00 AM - 12:00 PM</option>
+                    <option value="02:00 PM - 03:00 PM">02:00 PM - 03:00 PM</option>
+                    <option value="03:00 PM - 04:00 PM">03:00 PM - 04:00 PM</option>
+                </select>
+                <span id="timeError" class="error-message"></span>
+            </div>
+            
+            <div class="modal-footer">
+                <button type="submit" class="primary-btn">Confirm Booking</button>
+                <button type="button" id="cancelModalBtn" class="cancel-btn">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="/public/Medical_App/script.js"></script>
 
 </body>
 </html>
