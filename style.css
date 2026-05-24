@@ -949,6 +949,26 @@ color: var(--text-primary);
   opacity: 0.7;
 }
 
+.category-count {
+  font-size: 0.65rem;
+  font-weight: 600;
+  opacity: 0.8;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.12rem 0.4rem;
+  border-radius: 999px;
+  margin-left: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--t);
+}
+
+.chip.active .category-count {
+  background: rgba(59, 130, 246, 0.15);
+  color: var(--accent);
+  opacity: 1;
+}
+
 /* ── Project Card Grid ── */
 .project-grid {
   display: grid;

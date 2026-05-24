@@ -1112,6 +1112,39 @@ function initTechStackSearch() {
 const searchInput = document.getElementById('searchInput');
 const clearSearchBtn = document.getElementById('clearSearch');
 
+function updateCategoryCounts() {
+  const counts = {
+    'game': 0,
+    'clone': 0,
+    'tool': 0,
+    'ui': 0,
+    'api': 0
+  };
+
+  PROJECTS.forEach(([day, name, url, tags]) => {
+    const category = getCategoryFromTags(tags, name);
+    if (category === 'Games') counts['game']++;
+    else if (category === 'Clones') counts['clone']++;
+    else if (category === 'Tools') counts['tool']++;
+    else if (category === 'UI / Animation') counts['ui']++;
+    else if (category === 'APIs') counts['api']++;
+  });
+
+  const categorySpans = {
+    'game': document.getElementById('gameCount'),
+    'clone': document.getElementById('cloneCount'),
+    'tool': document.getElementById('toolCount'),
+    'ui': document.getElementById('uiCount'),
+    'api': document.getElementById('apiCount')
+  };
+
+  for (const [key, span] of Object.entries(categorySpans)) {
+    if (span) {
+      span.textContent = counts[key];
+    }
+  }
+}
+
 function syncProjectCounts() {
   let filtered = [...PROJECTS];
   
@@ -1133,6 +1166,8 @@ function syncProjectCounts() {
   if (searchInput) {
     searchInput.placeholder = `Search ${PROJECTS.length.toLocaleString()} projects…`;
   }
+
+  updateCategoryCounts();
 }
 
 // Clear button functionality
