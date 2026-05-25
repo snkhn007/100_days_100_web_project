@@ -1,17 +1,7 @@
 var logDiv = document.getElementById('statusLog');
-
-var philStates = [
-    "Thinking",
-    "Thinking",
-    "Thinking",
-    "Thinking",
-    "Thinking"
-];
-
-// true = fork is free
-var forks = [true, true, true, true, true];
-
-var simStarted = false;
+var philStates = ["Thinking", "Thinking", "Thinking", "Thinking", "Thinking"];
+var forks = [true, true, true, true, true]; // true = fork is free on table
+var simStarted    = false;
 var deadlockShown = false;
 
 function addLog(msg) {
@@ -19,229 +9,134 @@ function addLog(msg) {
 }
 
 function updateUI(id, cssClass, label) {
-
     var el = document.getElementById('p' + id);
-
-    el.className = 'phil ' + cssClass;
-
-    el.innerHTML = 'P' + id + '<br>' + label;
+    if (el) {
+        el.className = 'phil ' + cssClass;
+        el.innerHTML = 'P' + id + '<br>' + label;
+    }
 }
 
 function tryPickupForks(id) {
+    var left  = (id + 4) % 5;
+var right = id;
+    var deadlockMode = document.getElementById('deadlockMode').checked;
 
-    // FIXED FOR YOUR VISUAL LAYOUT
-    var left = (id + 4) % 5;
-    var right = id;
-
-    var deadlockMode =
-        document.getElementById('deadlockMode').checked;
-
-    // DEADLOCK MODE
+    // ── DEADLOCK MODE LOGIC ──
     if (deadlockMode) {
-
-        // Everyone grabs only left fork
+        // If the philosopher hasn't picked up their left fork yet, try to grab it
         if (forks[left] === true) {
-
             forks[left] = false;
-
-            document.getElementById('f' + left).className =
-                'fork held';
-
-            addLog(
-                'P' + id +
-                ' grabbed LEFT fork F' + left +
-                ', waiting for RIGHT fork F' + right
-            );
-
+            document.getElementById('f' + left).className = 'fork held';
+            addLog('P' + id + ' grabbed left fork F' + left + ', waiting for F' + right + '...');
+            
+            // Check right away if this action completed a circular deadlock ring
             checkDeadlockCondition();
         }
-
+        // In deadlock mode, they grab one fork and wait indefinitely, never succeeding to eat
         return false;
     }
 
+    // ── NORMAL MODE LOGIC (Resource Hierarchy Arbitration) ──
     var firstFork, secondFork;
-
-    // P4 picks in reverse order to avoid deadlock
     if (id === 4) {
-
-        firstFork = right;
+        firstFork  = right; // Asymmetric allocation to break circular wait
         secondFork = left;
-
     } else {
-
-        firstFork = left;
+        firstFork  = left;
         secondFork = right;
     }
 
-    // Check if both forks available
-    if (
-        forks[firstFork] === true &&
-        forks[secondFork] === true
-    ) {
-
-        forks[firstFork] = false;
+    // Atomic double-fork verification
+    if (forks[firstFork] === true && forks[secondFork] === true) {
+        forks[firstFork]  = false;
         forks[secondFork] = false;
-
-        document.getElementById('f' + firstFork).className =
-            'fork held';
-
-        document.getElementById('f' + secondFork).className =
-            'fork held';
-
-        addLog(
-            'P' + id +
-            ' picked forks F' +
-            firstFork +
-            ' and F' +
-            secondFork
-        );
-
+        document.getElementById('f' + firstFork).className  = 'fork held';
+        document.getElementById('f' + secondFork).className = 'fork held';
         return true;
     }
-
     return false;
 }
 
 function releaseForks(id) {
-
-    // FIXED FOR YOUR VISUAL LAYOUT
-    var left = (id + 4) % 5;
-    var right = id;
-
-    forks[left] = true;
+    var left  = id;
+    var right = (id + 1) % 5;
+    forks[left]  = true;
     forks[right] = true;
-
-    document.getElementById('f' + left).className =
-        'fork';
-
-    document.getElementById('f' + right).className =
-        'fork';
+    document.getElementById('f' + left).className  = 'fork';
+    document.getElementById('f' + right).className = 'fork';
 }
 
 function checkDeadlockCondition() {
+    var heldForkCount = 0;
 
-    var hungryCount = 0;
-    var forksAvailable = 0;
-
+    // Count how many forks have been hoarded across the table
     for (var i = 0; i < 5; i++) {
-
-        if (philStates[i] === "Hungry") {
-            hungryCount++;
-        }
-
-        if (forks[i] === true) {
-            forksAvailable++;
+        if (forks[i] === false) {
+            heldForkCount++;
         }
     }
 
-    // Deadlock detected
-    if (
-        hungryCount === 5 &&
-        forksAvailable === 0 &&
-        deadlockShown === false
-    ) {
-
+    // If all 5 forks are held by hungry philosophers, circular wait condition is met!
+    if (heldForkCount === 5 && !deadlockShown) {
         deadlockShown = true;
-
-        document.getElementById('alert').style.display =
-            "block";
-
-        addLog(
-            '>>> DEADLOCK DETECTED! All philosophers waiting forever.'
-        );
+        document.getElementById('alert').style.display = "block";
+        addLog('>>> ⚠ DEADLOCK DETECTED! All philosophers are holding their left fork and waiting forever.');
     }
 }
 
 function processLife(id) {
-
-    // THINKING
     philStates[id] = "Thinking";
-
     updateUI(id, "thinking", "Think");
-
     addLog('P' + id + ' is thinking...');
 
-    var thinkTime =
-        4000 + Math.floor(Math.random() * 3000);
+    // Dynamic randomized thinking cycles (between 3 to 6 seconds)
+    var thinkTime = 3000 + Math.floor(Math.random() * 3000);
 
-    setTimeout(function () {
-
-        // HUNGRY
+    setTimeout(function() {
         philStates[id] = "Hungry";
-
         updateUI(id, "hungry", "Hungry");
+        addLog('P' + id + ' is hungry, trying to get forks...');
 
-        addLog(
-            'P' + id +
-            ' is hungry and trying to pick forks...'
-        );
-
-        var retryTimer = setInterval(function () {
-
+        var retryTimer = setInterval(function() {
+            // Safety fallback break conditional
             if (philStates[id] !== "Hungry") {
-
                 clearInterval(retryTimer);
                 return;
             }
 
             var gotForks = tryPickupForks(id);
 
-            // SUCCESS
             if (gotForks === true) {
-
                 clearInterval(retryTimer);
-
                 philStates[id] = "Eating";
-
                 updateUI(id, "eating", "Eating");
+                addLog('P' + id + ' is EATING! (fork F' + id + ' + fork F' + ((id + 1) % 5) + ')');
 
-                addLog(
-                    'P' + id +
-                    ' is EATING'
-                );
-
-                // EATING TIME
-                setTimeout(function () {
-
+                // Eat for 4 seconds before returning forks safely
+                setTimeout(function() {
                     releaseForks(id);
-
-                    addLog(
-                        'P' + id +
-                        ' released forks and started thinking again.'
-                    );
-
+                    addLog('P' + id + ' finished eating, forks released.');
                     processLife(id);
-
-                }, 5000);
+                }, 4000);
             }
-
-        }, 1000);
-
+        }, 1000); // Poll fork availability every 1 second
     }, thinkTime);
 }
 
 function startSim() {
-
-    if (simStarted) {
-
-        alert("Simulation already running!");
-        return;
+    if (simStarted) { 
+        alert("Simulation is already running!"); 
+        return; 
     }
-
     simStarted = true;
-
     addLog('--- Simulation Started ---');
 
+    // Staggered initialization to make the UI smooth and clean
     for (var i = 0; i < 5; i++) {
-
-        (function (id) {
-
-            setTimeout(function () {
-
+        (function(id) {
+            setTimeout(function() {
                 processLife(id);
-
-            }, id * 1000);
-
+            }, id * 1200);
         })(i);
     }
 }
