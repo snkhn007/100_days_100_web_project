@@ -125,10 +125,23 @@ body {
 }
 
 @keyframes floatShape {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  25% { transform: translate(30px, -40px) scale(1.05); }
-  50% { transform: translate(-20px, 20px) scale(0.95); }
-  75% { transform: translate(40px, 30px) scale(1.02); }
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  25% {
+    transform: translate(30px, -40px) scale(1.05);
+  }
+
+  50% {
+    transform: translate(-20px, 20px) scale(0.95);
+  }
+
+  75% {
+    transform: translate(40px, 30px) scale(1.02);
+  }
 }
 
 /* ---------- Header / Navigation ---------- */
@@ -216,11 +229,25 @@ header {
   position: relative;
 }
 
-#colour1 { background: #7c63ff; }
-#colour2 { background: #4f8dff; }
-#colour3 { background: #14b8a6; }
-#colour4 { background: #d57b1b; }
-#colour5 { background: #ef4444; }
+#colour1 {
+  background: #7c63ff;
+}
+
+#colour2 {
+  background: #4f8dff;
+}
+
+#colour3 {
+  background: #14b8a6;
+}
+
+#colour4 {
+  background: #d57b1b;
+}
+
+#colour5 {
+  background: #ef4444;
+}
 
 .theme-btn:hover {
   transform: scale(1.20);
@@ -515,6 +542,7 @@ section {
     opacity: 0;
     transform: translateY(16px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -588,8 +616,13 @@ section {
 }
 
 @keyframes strikeThrough {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
 }
 
 /* ---------- Actions (Dropdown + Buttons) ---------- */
@@ -682,6 +715,102 @@ section {
   list-style: none;
 }
 
+/* ---------- Document Card (.doc-item) — matches JS-generated HTML ---------- */
+.doc-item {
+  width: min(100%, 700px);
+  padding: 18px 22px;
+  background: var(--glass-bg);
+  color: var(--text-primary);
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: transform var(--transition), background var(--transition);
+  animation: fadeInUp 0.4s ease forwards;
+}
+
+.doc-item:hover {
+  transform: translateY(-3px);
+  background: rgba(23, 35, 68, 0.85);
+}
+
+.doc-icon {
+  font-size: 28px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.doc-name {
+  flex: 1 1 200px;
+  min-width: 140px;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-primary);
+  word-break: break-all;
+}
+
+.doc-date {
+  font-size: 12px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.doc-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.doc-btn {
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+  font-size: 13px;
+  font-weight: 600;
+  font-family: var(--font-family);
+  transition: background var(--transition), transform var(--transition);
+  text-align: center;
+}
+
+.doc-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+  transform: translateY(-1px);
+}
+
+.doc-btn.del {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.30);
+  color: #fca5a5;
+}
+
+.doc-btn.del:hover {
+  background: rgba(239, 68, 68, 0.30);
+}
+
+@media (max-width: 600px) {
+  .doc-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .doc-actions {
+    width: 100%;
+  }
+
+  .doc-btn {
+    flex: 1;
+    justify-content: center;
+  }
+}
+
 .document-item {
   width: min(100%, 700px);
   padding: 18px 22px;
@@ -753,6 +882,11 @@ section {
   font-weight: 600;
   font-size: 15px;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.30);
+}
+
+/* Show state — toggled by JS via classList.add("show") */
+.pdf-message.show {
+  display: block;
   animation: slideInRight 0.4s ease;
 }
 
@@ -761,6 +895,7 @@ section {
     opacity: 0;
     transform: translateX(40px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);

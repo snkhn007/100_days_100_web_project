@@ -18,7 +18,7 @@ let currentFilter = "all";
 function addTask() {
   const text = taskInput.value.trim();
   const category = taskTypeSelect.value;
-  
+
   if (!text) {
     showToast("⚠️ Please enter a task description!");
     return;
@@ -40,7 +40,7 @@ function addTask() {
   tasks.push(newTask);
   taskInput.value = "";
   taskTypeSelect.value = ""; // Reset dropdown
-  
+
   renderTasks();
   showToast("✅ Task added successfully!");
 }
@@ -81,7 +81,7 @@ function filterTasks(buttonElement, filterValue) {
   // Update active states on filter row
   document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
   buttonElement.classList.add("active");
-  
+
   currentFilter = filterValue;
   renderTasks();
 }
@@ -199,7 +199,7 @@ function applyTheme(themeName) {
   if (activeBtn) {
     activeBtn.classList.add("active");
   }
-  try { localStorage.setItem('todo-theme', themeName); } catch (e) {}
+  try { localStorage.setItem('todo-theme', themeName); } catch (e) { }
 }
 document.querySelectorAll(".theme-btn").forEach(button => {
   button.addEventListener("click", () => {
@@ -222,7 +222,7 @@ function saveAsPDF() {
   doc.setFont("Helvetica", "bold");
   doc.setFontSize(22);
   doc.text("TaskFlow Agenda Report", 20, 24);
-  
+
   doc.setFont("Helvetica", "normal");
   doc.setFontSize(10);
   doc.text(`Generated on: ${new Date().toLocaleString()}`, 20, 32);
@@ -234,22 +234,25 @@ function saveAsPDF() {
   tasks.forEach((task, index) => {
     const status = task.completed ? "[DONE]" : "[PENDING]";
     const printLine = `${index + 1}. ${status} (${task.category}) — ${task.text}`;
-    
+
     doc.text(20, verticalCursor, printLine);
     verticalCursor += 10;
   });
 
   const fileName = `TaskFlow_${Date.now()}.pdf`;
   const fileURL = URL.createObjectURL(doc.output("blob"));
-  
+
   appendDocumentToList(fileName, fileURL);
   showToast("📥 Exported list to Documents Tab!");
+
+  // Auto-navigate to Documents tab so the user sees the new entry
+  showDocuments();
 }
 
 function appendDocumentToList(fileName, fileURL) {
-  // Clear out documents page empty layout placeholder if present
-  const docEmptyState = documentsList.querySelector(".empty-state");
-  if (docEmptyState) docEmptyState.remove();
+  // Hide the empty-state placeholder (it is a sibling of the ul, not inside it)
+  const docEmptyState = document.getElementById("emptyDocsState");
+  if (docEmptyState) docEmptyState.style.display = "none";
 
   const docItem = document.createElement("div");
   docItem.className = "doc-item";
@@ -269,19 +272,16 @@ function appendDocumentToList(fileName, fileURL) {
 function removeDocumentItem(button) {
   button.closest(".doc-item").remove();
   if (documentsList.children.length === 0) {
-    documentsList.innerHTML = `
-      <div class="empty-state">
-        <div class="empty-icon">🗂️</div>
-        <p>No documents saved yet. Export your tasks!</p>
-      </div>`;
+    // Restore the empty-state placeholder when all docs are deleted
+    const docEmptyState = document.getElementById("emptyDocsState");
+    if (docEmptyState) docEmptyState.style.display = "flex";
   }
 }
 
 // 7. Toast Alerts Notification System
 function showToast(message) {
-  const toast = document.getElementById("toast");
+  const toast = document.getElementById("pdfMessage");
   if (!toast) {
-    // Fallback for standalone page: simple console/log
     console.log('Toast:', message);
     return;
   }
@@ -308,9 +308,14 @@ taskInput.addEventListener("keydown", (e) => {
     addTask();
   }
 });
+// Wire up Save as PDF button click listener
+const savePdfBtn = document.getElementById('savepdf');
+if (savePdfBtn) {
+  savePdfBtn.addEventListener('click', () => saveAsPDF());
+}
 
 // Load saved theme if present
 try {
   const saved = localStorage.getItem('todo-theme');
   if (saved) applyTheme(saved);
-} catch (e) {}
+} catch (e) { }
