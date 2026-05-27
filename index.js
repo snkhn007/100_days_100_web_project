@@ -1225,6 +1225,24 @@ function initScrollBtn() {
     if (ring) {
       ring.style.strokeDashoffset = circumference * (1 - progress);
     }
+
+    // Footer collision avoidance
+    const footer = document.querySelector('.footer');
+    if (footer) {
+      const footerRect = footer.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      
+      if (footerRect.top < windowHeight) {
+        const overlap = windowHeight - footerRect.top;
+        // Cap the upward movement to a maximum of 120px.
+        // This ensures it dodges the important bottom footer links but 
+        // doesn't fly completely off the top of the screen when the footer is huge.
+        const maxOverlap = Math.min(overlap, 120);
+        btn.style.bottom = `calc(2rem + ${maxOverlap}px)`;
+      } else {
+        btn.style.bottom = '2rem';
+      }
+    }
   };
 
   updateScrollProgress();
