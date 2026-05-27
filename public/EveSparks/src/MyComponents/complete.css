@@ -157,6 +157,7 @@ color: var(--text-primary);
   gap: 20px;
   border: 1px solid rgba(255,255,255,0.06);
   height: 100%;
+  align-items: flex-start
 }
 
   .modern-btn {
