@@ -314,8 +314,8 @@ function FaultyTerminal({
       ];
 
       let tr = 56, tg = 189, tb = 248;
-      const hexMatch = tintColor.replace('#', '').match(/^([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i);
-      if (hexMatch) { tr = parseInt(hexMatch[1], 16); tg = parseInt(hexMatch[2], 16); tb = parseInt(hexMatch[3], 16); }
+      const rgb = hexToRgb(tintColor);
+      if (rgb) { tr = Math.round(rgb[0] * 255); tg = Math.round(rgb[1] * 255); tb = Math.round(rgb[2] * 255); }
 
       const particles = TECH_TERMS.map((term, i) => ({
         term,
