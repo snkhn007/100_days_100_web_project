@@ -1,44 +1,81 @@
-Saturn Particle Gesture — Aevai
+# 🪐 Saturn Particle Gesture
 
-Overview
+An interactive, browser-based space visualization that renders a Saturn-like planet formed by dynamic particle systems, fully controlled in real-time via hand gesture recognition using your webcam and **MediaPipe Hands**.
+
 ---
-This project is a browser-based interactive space visualization that renders a Saturn-like planet formed by dynamic particle systems and controlled via real-time hand gesture recognition using the webcam.
 
-Features
+## ✨ Features
+
+- **Dynamic Particle Physics:** Renders a 3000+ interactive particle system forming the planetary core and Saturn's rings with high-performance canvas loops.
+- **Starfield Background:** Deep space starfield rendering featuring smooth parallax scrolling.
+- **Real-Time Gesture Tracking:** Smooth camera-based tracking leveraging Google's MediaPipe Hands API.
+- **Atmospheric Glow:** Custom multi-layer glow effects and radial shading to simulate atmospheric depth.
+- **Snappy Mirrored Webcam Overlay:** A minimal, non-intrusive preview showing webcam feed and hand tracking status.
+- **Cross-Platform:** Responsive layouts optimized for modern web browsers.
+
 ---
-- 3000+ particle system with core and ring particles
-- Starfield background with parallax
-- MediaPipe Hands integration for real-time gestures (open hand, fist, hand movement)
-- Canvas-based rendering with multi-layer glow effects
-- Responsive UI with small mirrored camera preview
 
-How to run
+## 🛠️ Tech Stack
+
+- **Core Engine:** HTML5 Canvas, Vanilla JavaScript (ES6+ Modules)
+- **Styling:** Vanilla CSS3 (Custom Typography & Dark Theme Layout)
+- **AI Models:** MediaPipe Hands, MediaPipe Camera Utilities (CDN-loaded)
+
 ---
-1. Serve the directory over HTTP (required for webcam). For example, using Python 3:
 
-```cmd
+## 🎮 How to Play & Controls
+
+### 🖐️ Hand Gestures
+
+| Gesture | Action | Description |
+| :--- | :--- | :--- |
+| 🖐️ **Open Hand** | **Idle Scatter** | Particles drift apart into a loose starfield cloud. |
+| ✊ **Fist** | **Saturn Formation** | Particles compress and orbit to form Saturn's core and rings. |
+| ↔️ **Move Fist L/R** | **Rotate Planet** | Rotates the entire planet along the Y-axis. |
+| ↕️ **Closer / Farther** | **Zoom In / Out** | Scales the camera viewport size based on hand distance from webcam. |
+| 👍 **Thumbs Up** | **Supernova Charge** | Accelerates particles to high velocities for a cosmic shockwave. |
+
+### ⌨️ Keyboard Shortcuts
+
+- `T` — Toggle Hand Tracking (Enable/Disable Webcam feed)
+- `I` — Toggle Instructions Overlay
+
+---
+
+## 🚀 Installation & Local Setup
+
+To protect your privacy, web browsers restrict webcam access to secure contexts (`https://` or `localhost`). You must run this project through a local web server:
+
+### Option 1: Python HTTP Server (Easiest)
+If you have Python installed, run this command in your project folder:
+```bash
 python -m http.server 8080
 ```
+Then open your browser and navigate to: [http://localhost:8080](http://localhost:8080)
 
-2. Open your browser to: `http://localhost:8080` and allow camera permission.
+### Option 2: Node.js (Static Server)
+If you prefer Node.js, you can install and use `serve`:
+```bash
+npx serve .
+```
+Then open your browser to the URL printed in the terminal (usually `http://localhost:3000`).
 
-Notes & Troubleshooting
 ---
-- The app uses MediaPipe Hands via CDN. If the model fails to load, check network connectivity and browser console.
-- If webcam permission is denied, the preview will not start and hand tracking will be disabled.
-- Mobile devices may reduce particle count for performance.
 
-Keyboard
----
-- `T` toggle hand tracking
-- `I` toggle instructions
+## 🔧 Troubleshooting
 
-Files
----
-- `index.html` — main page
-- `styles.css` — UI styling
-- `app.js` — application logic and rendering
+* **Camera Permission Denied:** Ensure you grant camera permission in your browser settings. The tracking status indicator will display "Camera Off" if permission is missing.
+* **Model Failed to Load:** Since MediaPipe model files are loaded via CDN, ensure you have an active internet connection.
+* **Performance Lag:** If the frame rate drops, close other browser tabs or background applications. Mobile devices may automatically scale down particle counts for smoother performance.
 
-License
 ---
-MIT — feel free to adapt.
+
+## 📄 License
+
+This project is open-source and licensed under the [MIT License](LICENSE). Feel free to adapt and build upon it!
+
+---
+
+## 👥 Author
+
+Created by **Sparsh Bansal** ([itzzSPcoder](https://github.com/itzzSPcoder)). Feel free to connect, star, or fork!
