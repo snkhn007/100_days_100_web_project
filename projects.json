@@ -1770,6 +1770,16 @@
 "techStack":["tool","javascript","html","css"],
 "difficulty":"advanced",
 "projectPath":"./public/InterviewPrepHub/index.html"
+},
+
+{
+  "projectNo":178,
+  "projectName":"Plane Take Off Simulation",
+  "projectType":"Animation",
+  "projectDesc":"Interactive airplane take-off simulation built using pure HTML and CSS animations without JavaScript.",
+  "techStack":["html","css","animation","simulation"],
+  "difficulty":"intermediate",
+  "projectPath":"./public/Plane Take Off Simulation/index.html"
 }
 ,
 {
@@ -1781,4 +1791,6 @@
 "difficulty":"intermediate",
 "projectPath":"./public/CYBER TYPE BATTLE/index.html"
 }
+
 ]
+
