@@ -754,6 +754,10 @@ function scrollToProjectSection() {
   const header = document.querySelector('.projects-header');
   if (!header) return;
 
+  // Only scroll if the projects section is fully below the viewport.
+  // If the user is already within or past the project grid, don't move them.
+  if (header.getBoundingClientRect().top < window.innerHeight) return;
+
   const navbar = document.querySelector('.navbar');
   // Subtract height of fixed navbar with a 50px buffer to prevent overlaying the search bar
   const offset = navbar ? navbar.offsetHeight - 50 : 30;
