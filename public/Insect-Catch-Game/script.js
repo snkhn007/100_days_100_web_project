@@ -5,9 +5,17 @@ const game_container = document.getElementById('game-container')
 const timeEl = document.getElementById('time')
 const scoreEl = document.getElementById('score')
 const message = document.getElementById('message')
+const endBtn = document.getElementById('end-btn')
+const gameOverPopup = document.getElementById('game-over')
+const yesBtn = document.getElementById('yes-btn')
+const noBtn = document.getElementById('no-btn')
+const finalResult = document.getElementById('final-result')
+const finalScore = document.getElementById('final-score')
+const finalTime = document.getElementById('final-time')
 let seconds = 0
 let score = 0
 let selected_insect = {}
+let gameInterval
 
 start_btn.addEventListener('click', () => screens[0].classList.add('up'))
 
@@ -24,7 +32,7 @@ choose_insect_btns.forEach(btn => {
 })
 
 function startGame() {
-    setInterval(increaseTime, 1000)
+    gameInterval = setInterval(increaseTime, 1000)
 }
 
 function increaseTime() {
@@ -75,4 +83,34 @@ function increaseScore() {
         message.classList.add('visible')
     }
     scoreEl.innerHTML = `Score: ${score}`
+}
+
+endBtn.addEventListener('click', () => {
+    gameOverPopup.style.display = 'flex'
+})
+
+noBtn.addEventListener('click', () => {
+    gameOverPopup.style.display = 'none'
+})
+
+yesBtn.addEventListener('click', endGame)
+
+function endGame() {
+    clearInterval(gameInterval)
+    document.querySelectorAll('.insect').forEach(insect => {
+        insect.remove()
+    })
+
+    gameOverPopup.style.display = 'none'
+
+    let m = Math.floor(seconds / 60)
+    let s = seconds % 60
+
+    m = m < 10 ? `0${m}` : m
+    s = s < 10 ? `0${s}` : s
+
+    finalScore.innerHTML = `Final Score: ${score}`
+    finalTime.innerHTML = `Time Taken: ${m}:${s}`
+
+    finalResult.style.display = 'flex'
 }
