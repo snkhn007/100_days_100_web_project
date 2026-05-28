@@ -223,3 +223,43 @@ submitOrder.addEventListener('click', () => {
 
   checkoutModal.style.display = 'none';
 });
+const searchInput = document.querySelector('#search-input');
+
+searchInput.addEventListener('keyup', () => {
+
+  const searchValue = searchInput.value.toLowerCase();
+
+  const products = document.querySelectorAll('.shoe-box');
+
+  let matchFound = false;
+
+  products.forEach((product) => {
+
+    const title = product
+      .querySelector('.shoe-title')
+      .textContent
+      .toLowerCase();
+
+    if(title.includes(searchValue)){
+
+      product.style.display = 'block';
+      matchFound = true;
+
+    } else {
+
+      product.style.display = 'none';
+
+    }
+
+  });
+
+  const noProductsMessage =
+    document.querySelector('#no-products-message');
+
+  if(matchFound){
+    noProductsMessage.style.display = 'none';
+  } else {
+    noProductsMessage.style.display = 'block';
+  }
+
+});
