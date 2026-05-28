@@ -54,7 +54,7 @@ let nextBubble = 1;
 let shooting = false;
 let bulletX, bulletY, bulletVX, bulletVY, bulletColor;
 let mouseX = W/2, mouseY = H/2;
-let score = 0, highScore = 0, level = 1, shots = 0, popped = 0;
+let score = 0, highScore = Number(localStorage.getItem('HighScore')) || 0, level = 1, shots = 0, popped = 0;
 let combo = 1, bestCombo = 1, levelProgress = 0;
 let paused = false, gameActive = false;
 let particles = [];
@@ -416,7 +416,11 @@ function onBubbleLand(row, col) {
     popped += group.length + floaters;
     score += (group.length * 50 + floaters * 100) * combo;
     levelProgress += (group.length + floaters) * 6;
-    if (score > highScore) highScore = score;
+    if (score > highScore) 
+      {
+        highScore = score;
+        localStorage.setItem('HighScore', highScore);
+      }
 
     combo = Math.min(combo + 1, 10);
     if (combo > bestCombo) bestCombo = combo;
