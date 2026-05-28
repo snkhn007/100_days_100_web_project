@@ -20,7 +20,6 @@ Here is the layout of the project files and directories:
 AI Image Classifier/
 ├── screenshots/
 │   ├── bag_analysis.jpg
-│   └── placeholder
 ├── Readme.md
 ├── index.html
 ├── script.js
