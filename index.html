@@ -110,7 +110,7 @@
         <div class="section-heading-row">
           <h2 class="section-title">Recently Viewed</h2>
 
-          <button class="view-all-btn" id="recentToggleBtn">View All</button>
+          <button class="view-all-btn" id="recentToggleBtn" aria-label="View all recent projects">View All</button>
         </div>
       </div>
 
@@ -127,10 +127,10 @@
           <h2 class="section-title">Bookmarked Projects</h2>
 
           <div style="display: flex; gap: 0.5rem; align-items: center;">
-            <button class="view-all-btn" id="copyBookmarksBtn" title="Copy Bookmarks">
+            <button class="view-all-btn" id="copyBookmarksBtn" title="Copy Bookmarks" aria-label="Copy bookmarks">
               <i class="fas fa-copy"></i>
             </button>
-            <button class="view-all-btn" id="bookmarkToggleBtn">
+            <button class="view-all-btn" id="bookmarkToggleBtn" aria-label="View bookmarked projects">
               View All
             </button>
           </div>
@@ -152,22 +152,22 @@
       <div class="projects-header">
         <!-- Filter Chips -->
         <div class="filter-chips" id="filterChips" style="margin-bottom: 20px;">
-          <button class="chip active" data-filter="all" id="filterAll">
+          <button class="chip active" data-filter="all" id="filterAll" aria-label="Show all projects">
             All <span class="chip-count" id="allCount">Projects</span>
           </button>
-          <button class="chip" data-filter="game" id="filterGame">
+          <button class="chip" data-filter="game" id="filterGame" aria-label="Show game projects">
             Games <span class="category-count" id="gameCount"></span>
           </button>
-          <button class="chip" data-filter="clone" id="filterClone">
+          <button class="chip" data-filter="clone" id="filterClone" aria-label="Show clone projects">
             Clones <span class="category-count" id="cloneCount"></span>
           </button>
-          <button class="chip" data-filter="tool" id="filterTool">
+          <button class="chip" data-filter="tool" id="filterTool" aria-label="Show tool projects">
             Tools <span class="category-count" id="toolCount"></span>
           </button>
-          <button class="chip" data-filter="ui" id="filterUI">
+          <button class="chip" data-filter="ui" id="filterUI" aria-label="Show UI animation projects">
             UI / Animation <span class="category-count" id="uiCount"></span>
           </button>
-          <button class="chip" data-filter="api" id="filterAPI">APIs <span class="category-count" id="apiCount"></span></button>
+          <button class="chip" data-filter="api" id="filterAPI" aria-label="Show API projects">
         </div>
 
         <div class="search-bar">
