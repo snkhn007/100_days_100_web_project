@@ -15,7 +15,6 @@
   --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-[data-theme="light"] {
 :root {
   --bg-primary: #0b0d0f;
   --bg-elevated: #111315;

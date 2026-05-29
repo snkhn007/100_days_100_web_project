@@ -67,6 +67,16 @@ function getCategoryFromTags(tags, name) {
 let PROJECTS = [];
 let projectsPromise = null;
 
+function parseProjectsData(payload) {
+  try {
+    return JSON.parse(payload);
+  } catch (error) {
+    // Fallback for common malformed object separators in projects.json
+    const repairedPayload = String(payload).replace(/}\s*{/g, '},{');
+    return JSON.parse(repairedPayload);
+  }
+}
+
 function loadProjects() {
   if (!projectsPromise) {
     projectsPromise = (async () => {
@@ -79,7 +89,8 @@ window.location.href).toString();
       if (!response.ok) {
         throw new Error(`Failed to load projects: ${response.statusText}`);
       }
-const data = await response.json();
+      const payload = await response.text();
+      const data = parseProjectsData(payload);
 
 PROJECTS = data.map(project => [
    `Day ${project.projectNo}`,
@@ -1562,6 +1573,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   initTheme();
   updateNavbar();
+  initScrollBtn();
+  fetchRepoStats();
 
   initCurrentYear();
   initFilterChips();
@@ -1575,8 +1588,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     await loadProjects();
 
     syncProjectCounts();
-    fetchRepoStats();
-    initScrollBtn();
 
     if (hasProjectGrid()) {
       renderGrid();
