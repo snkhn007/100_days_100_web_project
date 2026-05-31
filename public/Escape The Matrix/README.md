@@ -10,9 +10,7 @@ A browser-based hacking terminal game with a futuristic cyberpunk aesthetic. Nav
 
 | Boot Sequence | Main Menu | Gameplay |
 |:---:|:---:|:---:|
-| *(Add screenshot)* | *(Add screenshot)* | *(Add screenshot)* |
-
-> *To add screenshots: open `index.html`, capture each screen, and drop the images into `assets/images/`.*
+| ![Boot Sequence](assets/images/Boot.png) |![Main Menu](assets/images/Menu.png)  | ![Gameplay](assets/images/Gameplay.png) |
 
 ---
 
