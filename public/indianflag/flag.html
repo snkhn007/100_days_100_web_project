@@ -1,239 +1,238 @@
 <!doctype html>
 
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
 
-<head>
-  <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jay Hind</title>
 
-  <title>Jay Hind</title>
+    <link rel="stylesheet" href="flag.css" />
 
-  <link rel="stylesheet" href="flag.css" />
+    <link rel="icon" href="../favv.png" type="image/x-icon" />
+  </head>
 
-  <link rel="icon" href="../favv.png" type="image/x-icon" />
-</head>
+  <body>
+    <a href="/" class="project-back-button"> ← Back to Home </a>
 
-<body>
-  <a href="/" class="project-back-button"> ← Back to Home </a>
+    <!-- BACKGROUND VIDEO -->
 
-  <!-- BACKGROUND VIDEO -->
+    <div class="background-video">
+      <video autoplay muted loop id="bg-video">
+        <source
+          src="https://media.istockphoto.com/id/1503396346/video/happy-indian-republic-day-creative-flag-design-background.mp4?s=mp4-640x640-is&k=20&c=sScbw69iYMiOdC9_KZ2L12EL43ke3lsggE9aK7StIt4="
+          type="video/mp4"
+        />
+      </video>
+    </div>
 
-  <div class="background-video">
-    <video autoplay muted loop id="bg-video">
-      <source
-        src="https://media.istockphoto.com/id/1503396346/video/happy-indian-republic-day-creative-flag-design-background.mp4?s=mp4-640x640-is&k=20&c=sScbw69iYMiOdC9_KZ2L12EL43ke3lsggE9aK7StIt4="
-        type="video/mp4" />
-    </video>
-  </div>
+    <!-- MAIN CONTENT -->
 
-  <!-- MAIN CONTENT -->
+    <div class="main-page">
+      <!-- FLAG + QUOTE -->
 
-  <div class="main-page">
-    <!-- FLAG + QUOTE -->
+      <div class="wrapper">
+        <!-- FLAG -->
 
-    <div class="wrapper">
-      <!-- FLAG -->
+        <div class="flag-assembly">
+          <div class="bar">
+            <div class="bar-1"></div>
 
-      <div class="flag-assembly">
-        <div class="bar">
-          <div class="bar-1"></div>
+            <div class="bar-2"></div>
 
-          <div class="bar-2"></div>
-
-          <div class="bar-3"></div>
-        </div>
-
-        <div class="flag">
-          <div class="top"></div>
-
-          <div class="middle">
-            <img src="../indianflag/img/ashokchakr.gif" alt="Ashoka Chakra" />
+            <div class="bar-3"></div>
           </div>
 
-          <div class="bottom"></div>
+          <div class="flag">
+            <div class="top"></div>
+
+            <div class="middle">
+              <img src="../indianflag/img/ashokchakr.gif" alt="Ashoka Chakra" />
+            </div>
+
+            <div class="bottom"></div>
+          </div>
+        </div>
+
+        <!-- QUOTE CARD -->
+
+        <div class="quote-container">
+          <div class="image-wrapper">
+            <img id="patriot-image" src="" alt="Patriot Image" />
+          </div>
+
+          <div class="quote">"Give me blood and I will give you freedom."</div>
+
+          <div class="author">- Subhas Chandra Bose</div>
+
+          <div class="quote-nav">
+            <button id="prev-quote">&#8592;</button>
+
+            <button id="next-quote">&#8594;</button>
+          </div>
         </div>
       </div>
 
-      <!-- QUOTE CARD -->
+      <!-- MUSIC -->
 
-      <div class="quote-container">
-        <div class="image-wrapper">
-          <img id="patriot-image" src="" alt="Patriot Image" />
-        </div>
-
-        <div class="quote">"Give me blood and I will give you freedom."</div>
-
-        <div class="author">- Subhas Chandra Bose</div>
-
-        <div class="quote-nav">
-          <button id="prev-quote">&#8592;</button>
-
-          <button id="next-quote">&#8594;</button>
-        </div>
+      <div class="music-controls">
+        <audio id="bgMusic" controls autoplay loop>
+          <source src="vande_mataram.mp3" type="audio/mpeg" />
+        </audio>
       </div>
+
+      <!-- KNOW MORE -->
+
+      <section class="know-more-section">
+        <h2>Know More About Indian Flag</h2>
+
+        <div class="info-container">
+          <div class="info-card saffron">
+            <h3>Saffron</h3>
+
+            <p>
+              The saffron color represents courage, sacrifice, and the spirit of
+              strength.
+            </p>
+          </div>
+
+          <div class="info-card white">
+            <h3>White</h3>
+
+            <p>The white stripe symbolizes peace, truth, and honesty.</p>
+          </div>
+
+          <div class="info-card green">
+            <h3>Green</h3>
+
+            <p>
+              The green color represents growth, prosperity, and harmony with
+              nature.
+            </p>
+          </div>
+
+          <div class="info-card chakra">
+            <h3>Ashoka Chakra</h3>
+
+            <p>
+              The Ashoka Chakra stands for progress, dharma, and continuous
+              movement in life.
+            </p>
+          </div>
+        </div>
+      </section>
     </div>
 
-    <!-- MUSIC -->
+    <!-- SCRIPT -->
 
-    <div class="music-controls">
-      <audio id="bgMusic" controls autoplay loop>
-        <source src="vande_mataram.mp3" type="audio/mpeg" />
-      </audio>
-    </div>
+    <script>
+      const quotes = [
+        {
+          text: '"Give me blood and I will give you freedom."',
 
-    <!-- KNOW MORE -->
+          author: "- Subhas Chandra Bose",
 
-    <section class="know-more-section">
-      <h2>Know More About Indian Flag</h2>
+          image: "./img/subhas_bose.png",
+        },
 
-      <div class="info-container">
-        <div class="info-card saffron">
-          <h3>Saffron</h3>
+        {
+          text: '"Swaraj is my birthright and I shall have it."',
 
-          <p>
-            The saffron color represents courage, sacrifice, and the spirit of
-            strength.
-          </p>
-        </div>
+          author: "- Bal Gangadhar Tilak",
 
-        <div class="info-card white">
-          <h3>White</h3>
+          image: "./img/bal_tilak.png",
+        },
 
-          <p>The white stripe symbolizes peace, truth, and honesty.</p>
-        </div>
+        {
+          text: '"Inquilab Zindabad."',
 
-        <div class="info-card green">
-          <h3>Green</h3>
+          author: "- Bhagat Singh",
 
-          <p>
-            The green color represents growth, prosperity, and harmony with
-            nature.
-          </p>
-        </div>
+          image: "./img/bhagat_singh.jpg",
+        },
 
-        <div class="info-card chakra">
-          <h3>Ashoka Chakra</h3>
+        {
+          text: '"Jai Hind!"',
 
-          <p>
-            The Ashoka Chakra stands for progress, dharma, and continuous
-            movement in life.
-          </p>
-        </div>
-      </div>
-    </section>
-  </div>
+          author: "- Netaji Subhas Chandra Bose",
 
-  <!-- SCRIPT -->
+          image: "./img/subhas_bose.png",
+        },
 
-  <script>
-    const quotes = [
-      {
-        text: '"Give me blood and I will give you freedom."',
+        {
+          text: '"Karo ya maro."',
 
-        author: "- Subhas Chandra Bose",
+          author: "- Mahatma Gandhi",
 
-        image: "./img/subhas_bose.png",
-      },
+          image: "./img/gandhi.png",
+        },
+      ];
 
-      {
-        text: '"Swaraj is my birthright and I shall have it."',
+      let currentQuoteIndex = 0;
 
-        author: "- Bal Gangadhar Tilak",
+      const quoteText = document.querySelector(".quote");
 
-        image: "./img/bal_tilak.png",
-      },
+      const quoteAuthor = document.querySelector(".author");
 
-      {
-        text: '"Inquilab Zindabad."',
+      const patriotImage = document.getElementById("patriot-image");
 
-        author: "- Bhagat Singh",
+      function displayQuote() {
+        const currentQuote = quotes[currentQuoteIndex];
 
-        image: "./img/bhagat_singh.jpg",
-      },
+        const img = new Image();
 
-      {
-        text: '"Jai Hind!"',
+        img.onload = () => {
+          patriotImage.src = currentQuote.image;
 
-        author: "- Netaji Subhas Chandra Bose",
+          patriotImage.alt = currentQuote.author;
 
-        image: "./img/subhas_bose.png",
-      },
+          quoteText.textContent = currentQuote.text;
 
-      {
-        text: '"Karo ya maro."',
+          quoteAuthor.textContent = currentQuote.author;
+        };
 
-        author: "- Mahatma Gandhi",
-
-        image: "./img/gandhi.png",
-      },
-    ];
-
-    let currentQuoteIndex = 0;
-
-    const quoteText = document.querySelector(".quote");
-
-    const quoteAuthor = document.querySelector(".author");
-
-    const patriotImage = document.getElementById("patriot-image");
-
-    function displayQuote() {
-      const currentQuote = quotes[currentQuoteIndex];
-
-      const img = new Image();
-
-      img.onload = () => {
-        patriotImage.src = currentQuote.image;
-
-        patriotImage.alt = currentQuote.author;
-
-        quoteText.textContent = currentQuote.text;
-
-        quoteAuthor.textContent = currentQuote.author;
-      };
-
-      img.src = currentQuote.image;
-    }
-
-    displayQuote();
-
-    setInterval(() => {
-      currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
+        img.src = currentQuote.image;
+      }
 
       displayQuote();
-    }, 5000);
 
-    document
-
-      .getElementById("prev-quote")
-
-      .addEventListener("click", () => {
-        currentQuoteIndex =
-          (currentQuoteIndex - 1 + quotes.length) % quotes.length;
-
-        displayQuote();
-      });
-
-    document
-
-      .getElementById("next-quote")
-
-      .addEventListener("click", () => {
+      setInterval(() => {
         currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
 
         displayQuote();
+      }, 5000);
+
+      document
+
+        .getElementById("prev-quote")
+
+        .addEventListener("click", () => {
+          currentQuoteIndex =
+            (currentQuoteIndex - 1 + quotes.length) % quotes.length;
+
+          displayQuote();
+        });
+
+      document
+
+        .getElementById("next-quote")
+
+        .addEventListener("click", () => {
+          currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
+
+          displayQuote();
+        });
+
+      const music = document.getElementById("bgMusic");
+
+      window.addEventListener("load", () => {
+        music.play().catch(() => {
+          console.log("Autoplay blocked");
+        });
       });
-
-    const music = document.getElementById("bgMusic");
-
-    window.addEventListener("load", () => {
-      music.play().catch(() => {
-        console.log("Autoplay blocked");
-      });
-    });
-  </script>
-</body>
-
+    </script>
+  </body>
 </html>
