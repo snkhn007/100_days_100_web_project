@@ -85,7 +85,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const btn = document.getElementById("dark-mode-toggle");
   if (btn) btn.textContent = isDarkMode ? "☀️" : "🌙";
   applyDarkMode(isDarkMode);
+  
+  if (typeof setTheme === "function") {
   setTheme(activeTheme);
+}
 
   formatToggleBtn.textContent = is24HourFormat ? "12H" : "24H";
 
@@ -601,13 +604,14 @@ function selectPrimaryTimezone(id, name) {
   updateClock();
 }
 
-function toggleTimezoneDropdown(e) {
+window.toggleTimezoneDropdown = function (e) {
   e.stopPropagation();
   const container = document.getElementById("tz-options-container");
   const wrapper = document.getElementById("primary-timezone-wrapper");
+
   container.classList.toggle("hidden");
   wrapper.classList.toggle("open", !container.classList.contains("hidden"));
-}
+};
 
 function filterTimezones() {
   const input = document.getElementById("tz-search-input").value.toLowerCase();
