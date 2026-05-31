@@ -1,8 +1,6 @@
 const fs = require("fs");
 
-const projects = JSON.parse(
-  fs.readFileSync("projects.json", "utf8")
-);
+const projects = JSON.parse(fs.readFileSync("projects.json", "utf8"));
 
 const README_PATH = "README.md";
 
@@ -10,24 +8,21 @@ function getDemoLink(projectPath) {
   if (!projectPath) return "#";
 
   // External URLs (GitHub, Render, etc.)
-  if (
-    projectPath.startsWith("http://") ||
-    projectPath.startsWith("https://")
-  ) {
+  if (projectPath.startsWith("http://") || projectPath.startsWith("https://")) {
     return projectPath;
   }
 
   // Internal project paths
   return `https://100-days-100-web-project.vercel.app/${projectPath.replace(
     /^\.\//,
-    ""
+    "",
   )}`;
 }
 
 const projectTable = [
   "## 📚 All Projects (" + projects.length + " Total)",
   "",
-  "<div align=\"center\">",
+  '<div align="center">',
   "",
   "### 🎮 Interactive Demo Available!",
   "**[🌐 Visit Live Website](https://100-days-100-web-project.vercel.app/)** to see all projects with working demos!",
@@ -42,7 +37,7 @@ projects.forEach((project) => {
   const demoLink = getDemoLink(project.projectPath);
 
   projectTable.push(
-    `| ${project.projectNo} | ${project.projectName} | ${project.difficulty} | [View Demo](${demoLink}) |`
+    `| ${project.projectNo} | ${project.projectName} | ${project.difficulty} | [View Demo](${demoLink}) |`,
   );
 });
 
