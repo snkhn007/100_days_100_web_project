@@ -142,10 +142,6 @@ body.dark-mode {
     color: #ffffff;
 }
 
-/* Navbar */
-body.dark-mode nav {
-    background-color: #1e1e1e;
-}
 
 /* Cards / Sections */
 body.dark-mode .card,
@@ -161,10 +157,6 @@ body.dark-mode button {
     color: white;
 }
 
-/* Links */
-body.dark-mode a {
-    color: #ff4d4d;
-}
 
 /* APP SECTION DARK MODE */
 body.dark-mode .app-section {
