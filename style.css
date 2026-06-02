@@ -3103,25 +3103,3 @@ body > header {
   cursor: none !important;
 }
 }
-
-/* Mobile Hamburger Menu Fix - Exact Match to Other Buttons */
-@media (max-width: 768px) {
-    .theme-dropdown-container {
-        display: flex !important;
-        width: 100% !important;
-        justify-content: center !important;
-        align-items: center !important;
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-    .theme-dropdown-container #themeToggleNav {
-        display: flex !important;
-        width: 100% !important;
-        max-width: 280px !important; 
-        justify-content: center !important;
-        align-items: center !important;
-        box-sizing: border-box !important;
-        padding: 0.8rem 1rem !important; 
-        margin: 0 !important;
-    }
-}
