@@ -331,6 +331,38 @@ themeBtn.addEventListener("click", () => {
   applyTheme(!document.body.classList.contains("light"));
 });
 
+  function openCart() {
+    cartPanel && cartPanel.classList.add('active');
+    cartOverlay && cartOverlay.classList.add('active');
+  }
+  this.classList.add('animate');
+
+setTimeout(() => {
+  this.classList.remove('animate');
+}, 200);
+  localStorage.setItem("cartItems", JSON.stringify(itemList));
+  loadContent();
+}
+
+let itemList = JSON.parse(localStorage.getItem("cartItems")) || [];
+let wishlist = [];
+
+//Add Cart
+function toggleWishlist() {
+  const card = this.closest('.shoe-box');
+  const title = card.querySelector('.shoe-title').textContent;
+
+  if (wishlist.includes(title)) {
+    wishlist = wishlist.filter(item => item !== title);
+    this.classList.remove('active');
+    showToast("Removed from wishlist");
+  } else {
+    wishlist.push(title);
+    this.classList.add('active');
+    showToast("Added to wishlist");
+  function closeCart() {
+    cartPanel && cartPanel.classList.remove('active');
+    cartOverlay && cartOverlay.classList.remove('active');
 // ===== CART OPEN / CLOSE =====
 document.getElementById("cart-icon").addEventListener("click", openCart);
 document.getElementById("cart-close").addEventListener("click", closeCart);
@@ -544,6 +576,70 @@ submitOrderBtn.addEventListener("click", () => {
     return;
   }
 
+  // wishlist
+  function toggleWishlist(e) {
+    const btn = e.currentTarget;
+    const card = btn.closest('.shoe-box');
+    if (!card) return;
+    const title =
+      (card.querySelector('.shoe-title') && card.querySelector('.shoe-title').textContent) ||
+      'Product';
+    if (wishlist.includes(title)) {
+      wishlist = wishlist.filter((i) => i !== title);
+      btn.classList.remove('active');
+      showToast('Removed from wishlist');
+    } else {
+      wishlist.push(title);
+      btn.classList.add('active');
+      showToast('Added to wishlist');
+    }
+    updateWishlistCount();
+  }
+}
+function addCart(){
+  let shoe=this.parentElement;
+  let title=shoe.querySelector('.shoe-title').innerHTML;
+  let price=shoe.querySelector('.shoe-price').innerHTML;
+  let imgSrc=shoe.querySelector('.shoe-img').src;
+function decQty() {
+  const input = this.parentElement.querySelector('.cart-quantity');
+  const v = parseInt(input.value) || 1;
+  if (v > 1) input.value = v - 1;
+  bindCart();
+}
+
+function incQty() {
+  const input = this.parentElement.querySelector('.cart-quantity');
+  const v = parseInt(input.value) || 1;
+  input.value = v + 1;
+  bindCart();
+}
+
+let itemList = [];
+
+function addCart() {
+  const card = this.closest('.card');
+  const title = card.querySelector('.card-title').textContent;
+  const raw = card.querySelector('.card-price').textContent;
+  const price = raw.replace(/,/g, '');
+  const imgSrc = card.querySelector('.card-img').src;
+  const removeSrc = card.querySelector('.card-remove').src;
+
+ //Check Product already Exist in Cart
+  if(itemList.find((el)=>el.title==newProduct.title)){
+  showToast("Product already added to cart");
+  return;
+  }else{
+  itemList.push(newProduct);
+  showToast("Product added to cart");
+  localStorage.setItem("cartItems", JSON.stringify(itemList));
+  if (itemList.some(el => el.title === title)) {
+    alert('Already in cart');
+    return;
+  function updateWishlistCount() {
+    if (!wishlistCountEl) return;
+    wishlistCountEl.textContent = wishlist.length;
+    wishlistCountEl.style.display = wishlist.length ? 'block' : 'none';
   const emailRx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRx.test(email)) {
     showToast("Please enter a valid email", true);
@@ -571,6 +667,119 @@ submitOrderBtn.addEventListener("click", () => {
     submitOrderBtn.innerHTML = `<span>Place Order</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>`;
     submitOrderBtn.style.background = "";
 
+    return `
+      <div class="product-rating" aria-label="${rating} out of 5 stars">
+        <span class="rating-stars">${stars}</span>
+        <span class="rating-value">${rating.toFixed(1)}</span>
+      </div>
+    </div>
+    <ion-icon name="trash" class="cart-remove"><img src="${removeSrc}" style="width:10px"/></ion-icon>
+  </div>`;
+}
+
+function updateTotal() {
+  let total = 0;
+  document.querySelectorAll('.cart-box').forEach(box => {
+    const p = parseFloat(box.querySelector('.cart-price').textContent.replace(/Rs\.?/g, '').replace(/,/g, ''));
+    const q = parseInt(box.querySelector('.cart-quantity').value) || 1;
+    total += p * q;
+    box.querySelector('.cart-amt').textContent = 'Rs.' + (p * q);
+  });
+  document.querySelector('.cart-total-price').textContent = 'Rs.' + total;
+
+  const count = document.querySelector('.cart-count');
+  const n = itemList.length;
+  count.textContent = n;
+  count.style.display = n === 0 ? 'none' : 'block';
+}
+
+// ===== CARD STAGGER =====
+function animateCards() {
+  document.querySelectorAll('.card').forEach((c, i) => {
+    setTimeout(() => c.classList.add('visible'), 60 * (i + 1));
+  });
+}
+
+// ===== SLIDER =====
+let current = 0;
+const slides = document.querySelectorAll('.slide');
+const dotBox = document.querySelector('#slider-dots');
+
+if (slides.length) {
+  slides.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => goSlide(i));
+    dotBox.appendChild(d);
+  });
+}
+
+function goSlide(i) {
+  slides.forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.dot').forEach(d => d.classList.remove('active'));
+  slides[i].classList.add('active');
+  document.querySelectorAll('.dot')[i].classList.add('active');
+  current = i;
+}
+
+totalValue.classList.add('updated');
+
+setTimeout(() => {
+  totalValue.classList.remove('updated');
+}, 300);
+
+function nextSlide() { goSlide((current + 1) % slides.length); }
+
+let interval = setInterval(nextSlide, 3000);
+
+const slider = document.querySelector('#slider');
+if (slider) {
+  slider.addEventListener('mouseenter', () => clearInterval(interval));
+  slider.addEventListener('mouseleave', () => { interval = setInterval(nextSlide, 3000); });
+}
+
+// ===== THEME =====
+const toggle = document.querySelector('#theme-toggle');
+const sun = document.querySelector('#sun-icon');
+const moon = document.querySelector('#moon-icon');
+
+function apply(dark) {
+  document.body.classList.toggle('dark-mode', dark);
+  sun.style.display = dark ? 'block' : 'none';
+  moon.style.display = dark ? 'none' : 'block';
+  localStorage.setItem('aero-theme', dark ? 'dark' : 'light');
+}
+
+if (toggle) {
+  apply(localStorage.getItem('aero-theme') === 'dark');
+  toggle.addEventListener('click', () => apply(!document.body.classList.contains('dark-mode')));
+}
+
+// ===== SEARCH =====
+const searchBtn = document.querySelector('.nav-icon[aria-label="Search"]');
+
+const searchModal = document.createElement('div');
+searchModal.id = 'search-modal';
+searchModal.style.cssText = `
+  display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+  background:rgba(0,0,0,0.7); z-index:9999; justify-content:center; align-items:flex-start; padding-top:80px;
+`;
+searchModal.innerHTML = `
+  <div style="background:#1a1a1a; padding:2rem; border-radius:12px; width:90%; max-width:500px; position:relative;">
+    <button id="search-close" style="position:absolute;top:1rem;right:1rem;background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer;">✕</button>
+    <input id="search-input" type="text" placeholder="Search shoes..." style="width:100%;padding:0.8rem 1rem;border-radius:8px;border:none;font-size:1rem;outline:none;"/>
+    <div id="search-results" style="margin-top:1rem;color:#fff;"></div>
+  </div>
+`;
+document.body.appendChild(searchModal);
+
+if (searchBtn) {
+  searchBtn.addEventListener('click', () => {
+    searchModal.style.display = 'flex';
+    document.getElementById('search-input').focus();
+  });
+}
+    `;
     showToast("🎉 Order placed successfully! Thank you, " + name + "!");
   }, 1200);
 });
@@ -900,6 +1109,67 @@ if(darkModeBtn){
   });
 
 }
+// Quick View Popup
+
+const quickViewModal =
+  document.querySelector('.quick-view-modal');
+
+const quickViewImg =
+  document.querySelector('#quick-view-img');
+
+const quickViewTitle =
+  document.querySelector('#quick-view-title');
+
+const quickViewPrice =
+  document.querySelector('#quick-view-price');
+
+const closeQuickView =
+  document.querySelector('.close-quick-view');
+
+const quickViewImages =
+  document.querySelectorAll('.shoe-img');
+
+quickViewImages.forEach((image) => {
+
+  image.addEventListener('click', () => {
+
+    const shoeBox = image.closest('.shoe-box');
+
+    const title =
+      shoeBox.querySelector('.shoe-title').innerText;
+
+    const price =
+      shoeBox.querySelector('.shoe-price').innerText;
+
+    const imgSrc = image.src;
+
+    quickViewImg.src = imgSrc;
+
+    quickViewTitle.innerText = title;
+
+    quickViewPrice.innerText = price;
+
+    quickViewModal.style.display = 'flex';
+
+  });
+
+});
+
+closeQuickView.addEventListener('click', () => {
+
+  quickViewModal.style.display = 'none';
+
+});
+
+window.addEventListener('click', (e) => {
+
+  if(e.target === quickViewModal){
+
+    quickViewModal.style.display = 'none';
+
+  }
+
+});
 document.getElementById('profile-close').addEventListener('click', () => {
   profileModal.style.display = 'none';
   // CHECKOUT modal
