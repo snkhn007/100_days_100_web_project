@@ -209,7 +209,6 @@ body:not(.dark-mode) button {
 body:not(.dark-mode) input {
     background-color: white !important;
     color: black !important;
-    border: 1px solid #ccc !important;
 }
 
 #darkModeToggle {
