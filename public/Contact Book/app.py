@@ -1,3 +1,4 @@
+ from flask import Flask, render_template, redirect, url_for, request, flash, session
  flask import Flask, render_template, redirect, url_for, request, flash, session
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -189,6 +190,14 @@ def dashboard():
     user_id = session["user_id"]
     sort_order = request.args.get("sort", "asc")
 
+    if sort_order == "desc":
+        contacts = Contact.query.filter_by(user_id=user_id).order_by(
+            Contact.name.desc()
+        ).all()
+    else:
+        contacts = Contact.query.filter_by(user_id=user_id).order_by(
+            Contact.name.asc()
+        ).all()
 if sort_order == "desc":
     contacts = Contact.query.filter_by(user_id=user_id).order_by(Contact.name.desc()).all()
 else:
