@@ -1893,5 +1893,14 @@
     "techStack": ["html", "css", "javascript"],
     "difficulty": "intermediate",
     "projectPath": "./public/AI-Semiconductor-Circuit-Builder/index.html"
+  },
+  {
+    "projectNo": 208,
+    "projectName": "Crossword Puzzle Game",
+    "projectType": "Web Application",
+    "projectDesc": "An immersive, interactive web-based survival and puzzle game challenging players to hack their way out of a simulated reality.",
+    "techStack": ["html", "css", "javascript"],
+    "difficulty": "intermediate",
+    "projectPath": "./public/CrosswordPuzzleGame/index.html"
   }
 ]
