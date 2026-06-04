@@ -37,6 +37,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const MAX_SPEED = 20;
     let enemySpawnInterval, gameLoopInterval;
 
+    // Difficulty config — controls starting speed and spawn rate
+    let selectedDifficulty = 'medium'; // default
+    const DIFFICULTY_SETTINGS = {
+        easy:   { startSpeed: 4, spawnRate: 1600 },
+        medium: { startSpeed: 6, spawnRate: 1200 },
+        hard:   { startSpeed: 9, spawnRate: 800  }
+    };
+
+    // Read difficulty buttons and set selectedDifficulty on click
+    document.querySelectorAll('.difficulty-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.difficulty-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            selectedDifficulty = btn.dataset.difficulty;
+        });
+    });
+
     const initPositions = () => {
         const roadWidth = highway.clientWidth;
         playerLeft = (roadWidth - 50) / 2;
@@ -48,7 +65,11 @@ document.addEventListener('DOMContentLoaded', () => {
         isPaused = false; 
         score = 0; 
         distance = 0; 
-        baseEnemySpeed = 6;
+
+        // Use difficulty settings instead of hardcoded values
+        const diff = DIFFICULTY_SETTINGS[selectedDifficulty];
+        baseEnemySpeed = diff.startSpeed;
+
         highway.dataset.bgPos = 0; 
         
         scoreVal.textContent = "0"; 
@@ -70,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
         clearInterval(enemySpawnInterval);
         
         gameLoopInterval = setInterval(updateGame, 1000 / 60); 
-        enemySpawnInterval = setInterval(spawnEnemy, 1200); 
+        enemySpawnInterval = setInterval(spawnEnemy, diff.spawnRate); // dynamic spawn rate
     };
 
     const roadMargin = 25; 
