@@ -64,6 +64,7 @@ body.dark-mode .app-section {
   line-height: 1.2;
   letter-spacing: -0.02em;
 }
+<<<<<<< fix/zomato-clone-app
 
 .app-section .app-description {
   margin: 0 0 2.8rem;
@@ -71,6 +72,14 @@ body.dark-mode .app-section {
   font-size: 1.65rem;
   font-weight: 300;
   line-height: 1.7;
+=======
+body.dark-mode .explore-options .heading {
+  color: white;
+}
+/* Buttons */
+body.dark-mode button {
+    color: white;
+>>>>>>> Main
 }
 
 /* Radio selector */
