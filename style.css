@@ -3259,6 +3259,8 @@ body.custom-cursor-active * {
 }
 
 body.custom-cursor-active .cursor-ring {
+  z-index: 999999 !important;
+  pointer-events: none !important;
   display: block;
 }
 

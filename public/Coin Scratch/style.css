@@ -424,6 +424,7 @@ main.experience-container {
     transform: translate(-50%, -50%);
     z-index: 9999;
     transition: transform 0.1s ease-out;
+    
 }
 
 /* Responsive adjustments */
