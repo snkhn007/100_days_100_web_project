@@ -492,7 +492,7 @@
       "javascript"
     ],
     "difficulty": "intermediate",
-    "projectPath": "./public/Amazon_Clone/index.html"
+    "projectPath": "./public/Amazon-App/index.html"
   },
   {
     "projectNo": 43,
@@ -2674,7 +2674,8 @@
       "css"
     ],
     "difficulty": "intermediate",
-    "projectDesc": "A responsive photography portfolio and gallery website designed to showcase visual content through structured layouts, image presentation sections, and modern styling. Features an engaging user interface optimized for desktop and mobile viewing."
+    "projectDesc": "A responsive photography portfolio and gallery website designed to showcase visual content through structured layouts, image presentation sections, and modern styling. Features an engaging user interface optimized for desktop and mobile viewing.",
+    "projectType": "Website"
   },
   {
     "projectNo": 214,
