@@ -2621,6 +2621,7 @@
   {
     "projectNo": 209,
     "projectName": "Kanban Board",
+    "projectType": "Tool",
     "projectPath": "./public/Kanban_Board/index.html",
     "techStack": [
       "html",
@@ -2633,6 +2634,7 @@
   {
     "projectNo": 210,
     "projectName": "IP Address Tracker",
+    "projectType": "Tool",
     "projectPath": "./public/Ip_Address_tracker/index.html",
     "techStack": [
       "html",
@@ -2645,6 +2647,7 @@
   {
     "projectNo": 211,
     "projectName": "Cricket Scorecard",
+    "projectType": "Tool",
     "projectPath": "./public/Cricket-Scorecard/index.html",
     "techStack": [
       "html",
@@ -2657,6 +2660,7 @@
   {
     "projectNo": 212,
     "projectName": "Tower Blocks Stacker",
+    "projectType": "Game",
     "projectPath": "./public/tower_stacker/index.html",
     "techStack": [
       "html",
@@ -2670,6 +2674,7 @@
   {
     "projectNo": 213,
     "projectName": "Photo Studio",
+    "projectType": "Website",
     "projectPath": "./public/Photo Studio/Project.html",
     "techStack": [
       "html",
