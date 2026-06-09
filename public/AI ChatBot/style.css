@@ -149,9 +149,10 @@ pre code {
 }
 
 #output-container {
-    flex-grow: 1; /* Allow the output container to grow and take up available space */
+    flex-grow: 1;
     overflow-y: auto;
-    padding-right: 10px; /* Optional: Add some padding for better appearance */
+    padding-right: 10px;
+    scroll-behavior: smooth;
 }
 
 .chat-message {
