@@ -1,8 +1,10 @@
 const fs = require('fs');
 const path = require('path');
+const Ajv = require('ajv');
 
 // Going up two levels from '.github/scripts/' to reach the repository root
 const projectsPath = path.join(__dirname, '../../projects.json');
+const schemaPath = path.join(__dirname, '../../projects.schema.json');
 
 console.log('🔍 Starting comprehensive structural integrity check on projects.json...');
 
@@ -25,6 +27,38 @@ if (!Array.isArray(data)) {
   console.error('❌ Error: projects.json root must be a JSON array.');
   process.exit(1);
 }
+
+// ── JSON Schema validation (AJV) ────────────────────────────────────────────
+// Validates projects.json against projects.schema.json as the single source
+// of truth before running the stricter custom checks below.
+if (!fs.existsSync(schemaPath)) {
+  console.error('❌ Error: projects.schema.json not found at: ' + schemaPath);
+  process.exit(1);
+}
+
+let schema;
+try {
+  schema = JSON.parse(fs.readFileSync(schemaPath, 'utf8'));
+} catch (err) {
+  console.error('❌ Error: projects.schema.json is not valid JSON: ' + err.message);
+  process.exit(1);
+}
+
+const ajv = new Ajv({ allErrors: true });
+const schemaValid = ajv.validate(schema, data);
+
+if (!schemaValid) {
+  console.error('\n❌ Schema validation (projects.schema.json) failed:\n');
+  ajv.errors.forEach((err, i) => {
+    const location = err.instancePath || '(root)';
+    console.error(`  ${i + 1}. [${location}] ${err.message}`);
+  });
+  console.error(`\nTotal schema errors: ${ajv.errors.length}`);
+  process.exit(1);
+}
+
+console.log('✅ Schema validation passed.');
+// ────────────────────────────────────────────────────────────────────────────
 
 console.log(`✅ JSON structure is valid. Validating ${data.length} project schemas...`);
 
