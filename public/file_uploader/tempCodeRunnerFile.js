@@ -2,7 +2,6 @@ const express = require('express')
 const app = express()
 const port = 3000
 const path = require('path');
-const crypto = require('crypto');
 const bodyParser = require('body-parser');
 const multer = require('multer');
 const ejs = require('ejs');
@@ -20,16 +19,13 @@ if (!fs.existsSync(uploadsDir)) {
     console.log('uploads/ folder created!');
 }
 
+// Professor ka same storage code
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, uploadsDir);
+        cb(null, uploadsDir); // ✅ absolute path use karo
     },
     filename: function (req, file, cb) {
-        const ext = path.extname(file.originalname).toLowerCase();
-        const allowedExts = ['.jpg', '.jpeg', '.png', '.webp'];
-        const safeExt = allowedExts.includes(ext) ? ext : '.bin';
-        const safeName = crypto.randomBytes(16).toString('hex') + safeExt;
-        cb(null, safeName);
+        cb(null, file.originalname);
     },
 });
 
