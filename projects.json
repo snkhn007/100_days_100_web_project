@@ -1862,7 +1862,7 @@
   },
   {
     "projectNo": 155,
-    "projectName": "Hangman Game",
+    "projectName": "Hangman Game (React TS)",
     "projectType": "Game",
     "projectDesc": "Advanced Hangman implementation using React and TypeScript architecture.",
     "techStack": [
