@@ -64,8 +64,27 @@
                 <div class="mt-14 flex items-center p-3 border border-gray-500">
                     <img class="h-10 pr-2"
                         src="https://www.bing.com/th/id/OIP.6cECdI45_I2-tWe4AggXMQAAAA?w=180&h=180&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2"
-                        alt=""><input class="w-xl p-3 outline-none focus:outline-none focus:ring-0 " type="text"
-                        placeholder="What's Happening?">
+                       alt="">
+                    <div class="flex flex-col w-full">
+                        <textarea id="tweetInput" maxlength="280"
+                            class="w-xl p-3 outline-none focus:outline-none focus:ring-0 bg-black text-white resize-none"
+                            placeholder="What's Happening?" rows="2"></textarea>
+                        <div class="flex items-center justify-end gap-3 pr-2 pb-2">
+                            <svg id="progressRing" width="30" height="30" viewBox="0 0 30 30">
+                                <circle cx="15" cy="15" r="12" fill="none" stroke="#333" stroke-width="3"/>
+                                <circle id="progressCircle" cx="15" cy="15" r="12" fill="none"
+                                    stroke="#1d9bf0" stroke-width="3"
+                                    stroke-dasharray="75.4" stroke-dashoffset="75.4"
+                                    stroke-linecap="round"
+                                    transform="rotate(-90 15 15)"/>
+                            </svg>
+                            <span id="charCount" class="text-gray-400 text-sm">280</span>
+                            <button id="postBtn"
+                                class="bg-blue-400 text-white pl-4 pr-4 p-1 rounded-4xl font-bold cursor-pointer">
+                                Post
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <div class="w-xl border border-gray-500">
                     <div class="border border-gray-500 border-t-0 text-center text-blue-400 p-3 cursor-pointer">Show 1,897 posts</div>
@@ -375,6 +394,40 @@
 
         </div>
     </div>
+    <script>
+    const input = document.getElementById('tweetInput');
+    const charCount = document.getElementById('charCount');
+    const circle = document.getElementById('progressCircle');
+    const postBtn = document.getElementById('postBtn');
+    const max = 280;
+    const circumference = 75.4;
+
+    input.addEventListener('input', () => {
+        const len = input.value.length;
+        const remaining = max - len;
+        const offset = circumference - (len / max) * circumference;
+
+        charCount.textContent = remaining;
+        circle.style.strokeDashoffset = offset;
+
+        if (remaining <= 0) {
+            circle.style.stroke = '#f4212e';
+            charCount.style.color = '#f4212e';
+            postBtn.disabled = true;
+            postBtn.style.opacity = '0.5';
+        } else if (remaining <= 20) {
+            circle.style.stroke = '#ffd400';
+            charCount.style.color = '#ffd400';
+            postBtn.disabled = false;
+            postBtn.style.opacity = '1';
+        } else {
+            circle.style.stroke = '#1d9bf0';
+            charCount.style.color = '#6b7280';
+            postBtn.disabled = false;
+            postBtn.style.opacity = '1';
+        }
+    });
+</script>
 </body>
 
 </html>
