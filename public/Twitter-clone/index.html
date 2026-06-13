@@ -105,7 +105,7 @@
                 </div>
 
 
-                <div class="border border-gray-400 p-3">
+                <div class="tweet-card border border-gray-400 p-3">
                     <div class="flex items-center gap-2">
                         <div> <img class="h-8 pr-2"
                         src="https://www.bing.com/th/id/OIP.6cECdI45_I2-tWe4AggXMQAAAA?w=180&h=180&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2"
@@ -393,6 +393,58 @@
             </div>
 
         </div>
+        <style>
+    @keyframes shimmer {
+        0% { opacity: 0.4; }
+        50% { opacity: 1; }
+        100% { opacity: 0.4; }
+    }
+</style>
+
+<script>
+    const tweetCards = document.querySelectorAll('.tweet-card');
+    const feed = document.querySelector('.box2');
+    let visibleCount = 1;
+
+    const skeletonHTML = `
+        <div class="skeleton-card border border-gray-700 p-3 mb-2">
+            <div class="flex items-center gap-2 mb-3">
+                <div style="width:32px;height:32px;border-radius:50%;background:#2f3336;animation:shimmer 1.5s infinite;"></div>
+                <div style="height:12px;width:120px;background:#2f3336;border-radius:4px;animation:shimmer 1.5s infinite;"></div>
+            </div>
+            <div style="height:12px;width:90%;background:#2f3336;border-radius:4px;margin-bottom:8px;animation:shimmer 1.5s infinite;"></div>
+            <div style="height:12px;width:70%;background:#2f3336;border-radius:4px;animation:shimmer 1.5s infinite;"></div>
+        </div>`;
+
+    tweetCards.forEach((card, i) => {
+        if (i >= visibleCount) card.style.display = 'none';
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const skeletonDiv = document.createElement('div');
+                skeletonDiv.innerHTML = skeletonHTML;
+                feed.appendChild(skeletonDiv);
+
+                setTimeout(() => {
+                    skeletonDiv.remove();
+                    if (visibleCount < tweetCards.length) {
+                        tweetCards[visibleCount].style.display = 'block';
+                        visibleCount++;
+                        if (visibleCount < tweetCards.length) {
+                            observer.observe(tweetCards[visibleCount - 1]);
+                        }
+                    }
+                }, 1000);
+
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    if (tweetCards.length > 0) observer.observe(tweetCards[0]);
+</script>
     </div>
     <script>
     const input = document.getElementById('tweetInput');
