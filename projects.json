@@ -751,7 +751,7 @@
       "css"
     ],
     "difficulty": "beginner",
-    "projectPath": "./public/zomato-clone/index.html"
+    "projectPath": "./public/zomato-clone/public/index.html"
   },
   {
     "projectNo": 65,
@@ -1067,7 +1067,7 @@
       "javascript"
     ],
     "difficulty": "beginner",
-    "projectPath": "./public/QuizeApp Timer/index1.html"
+    "projectPath": "./public/QuizApp Timer/index.html"
   },
   {
     "projectNo": 91,
@@ -2740,7 +2740,7 @@
       "vite"
     ],
     "difficulty": "advanced",
-    "projectPath": "./public/Gemini/dist/index.html"
+    "projectPath": "./public/Gemini/index.html"
   },
   {
     "projectNo": 218,
@@ -2839,7 +2839,7 @@
   },
   {
     "projectNo": 225,
-    "projectName": "Harryy Potter Spellbook",
+    "projectName": "Harry Potter Spellbook",
     "projectType": "API",
     "projectDesc": "A magical, interactive web application built with vanilla web technologies. This project fetches live data from the Harry Potter API and features an interactive Spell Caster that dynamically alters the UI using CSS animations and state changes based on the spells you cast.",
     "techStack": [
@@ -2862,7 +2862,7 @@
       "javascript"
     ],
     "difficulty": "advanced",
-    "projectPath": "./public/mind-reader/mind-reader/dist/index.html"
+    "projectPath": "./public/mind-reader/mind-reader/index.html"
   },
   {
     "projectNo": 227,
@@ -2876,7 +2876,7 @@
       "game"
     ],
     "difficulty": "advanced",
-    "projectPath": "./public/Word_Jumble/index.html"
+    "projectPath": "./public/Word_jumble/index.html"
   },
   {
     "projectNo": 228,
