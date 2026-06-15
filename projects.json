@@ -2907,6 +2907,18 @@
     ],
     "difficulty": "intermediate",
     "projectPath": "./public/dad-joke/index.html"
+  },
+  {
+  "projectNo": 230,
+  "projectName": "UnitVerse - Interactive Unit Converter Web App",
+  "projectType": "Tool",
+  "projectDesc": "An interactive unit converter with real-time conversion, history tracking, favorites system, and a modern responsive UI.",
+  "techStack": [
+    "html", 
+    "css", 
+    "javascript"
+  ],
+  "difficulty": "intermediate",
+  "projectPath": "./public/UnitVerse/index.html"
   }
-
 ]
