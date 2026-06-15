@@ -361,7 +361,7 @@ function buildProjectCardHTML({
             alt="${safeName} preview"
             loading="lazy"
             decoding="async"
-            onerror="this.parentNode.style.display='none';"
+            onerror="if(this.src.endsWith('.png')){this.src=this.src.replace('.png','.webp')}else{this.parentNode.style.display='none';}"
             style="width: 100%; height: 100%; object-fit: cover;">
             </div>
 
