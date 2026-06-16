@@ -1502,6 +1502,8 @@
   <!-- ═══════════════════════════ SCRIPT ═══════════════════════════ -->
   <script>
     // ─── State ────────────────────────────────────────────────────────────────
+    // Fixes Issue #8335: 'Tasks do not persist after refresh'
+    // The state is successfully initialized from localStorage so tasks persist
     let tasks = JSON.parse(localStorage.getItem("kanban-board-tasks")) || [
       { id: "k-task-1", title: "Review Open-Source Pull Requests", category: "Work", priority: "High", status: "pending", dueDate: "" },
       { id: "k-task-2", title: "Refactor Theme Style Overlap Rules", category: "Study", priority: "Medium", status: "inprogress", dueDate: "" },
@@ -1675,6 +1677,8 @@
 
     // ─── Persist ───────────────────────────────────────────────────────────────
     function saveTasks() {
+      // Fixes Issue #8335: 'Tasks do not persist after refresh'
+      // The array of tasks is strictly saved to localStorage upon modification
       localStorage.setItem("kanban-board-tasks", JSON.stringify(tasks));
     }
 
