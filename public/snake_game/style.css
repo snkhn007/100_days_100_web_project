@@ -105,7 +105,7 @@ a {
 
 .hud {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1rem;
 }
 
@@ -148,6 +148,38 @@ a {
 .stat-value.bump {
   transform: scale(1.16);
   color: #ffffff;
+}
+
+.color-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.snake-color-picker {
+  width: 3.2rem;
+  height: 2.1rem;
+  padding: 0.18rem;
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  background: var(--btn-bg);
+  box-shadow: 0 0 14px rgba(57, 255, 20, 0.16);
+  cursor: pointer;
+}
+
+.snake-color-picker::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.snake-color-picker::-webkit-color-swatch {
+  border: 0;
+  border-radius: 8px;
+}
+
+.snake-color-picker::-moz-color-swatch {
+  border: 0;
+  border-radius: 8px;
 }
 
 .canvas-wrapper {
@@ -426,6 +458,10 @@ canvas {
   .canvas-wrapper {
     margin-bottom: 70px;
   }
+
+  .hud {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media screen and (max-width: 480px) {
@@ -509,6 +545,11 @@ body.light .key-symbol {
 body.light .stat-value {
   color: var(--accent);
   text-shadow: none;
+}
+
+body.light .snake-color-picker {
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: none;
 }
 
 body.light .key {
