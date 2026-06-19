@@ -70,9 +70,9 @@
           <button id="solveBtn" class="btn btn--secondary" disabled>Auto-Solve</button>
 Main
         </div>
-        <label class="controls__checkbox">
-          <input type="checkbox" id="showInvalid" disabled />
-          Show attacked cells
+        <label for="showInvalid" class="controls__checkbox">
+            <input type="checkbox" id="showInvalid" disabled>
+            Show attacked cells
         </label>
       </div>
 
@@ -80,12 +80,13 @@ Main
         Choose a size and press New Game.
       </p>
 
-      <section
-        id="gameBoard"
-        class="board"
-        aria-label="Game board"
-        aria-describedby="message"
-      ></section>
+     <section
+      id="gameBoard"
+      class="board"
+      tabindex="0"
+      aria-label="Game board"
+      aria-describedby="message"
+    ></section>
     </main>
 
  
